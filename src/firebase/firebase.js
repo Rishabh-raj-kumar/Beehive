@@ -3,6 +3,9 @@ import { initializeApp} from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import 'firebase/firestore';
 import { Firestore } from "firebase/firestore";
+ 
+//needed it once for exporting data to cloud datastore.
+// import {seedDatabase} from '../seed';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBHJ4QosAFGXvi0LpxsZKlrXk701pr3a58",
@@ -18,5 +21,7 @@ const firebaseConfig = {
 const firebase = initializeApp(firebaseConfig);
 const analytics = getAnalytics(firebase);
 const FieldValue = Firestore;
+
+seedDatabase(firebase);
 
 export {firebase, FieldValue};

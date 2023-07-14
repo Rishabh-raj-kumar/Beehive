@@ -1,5 +1,8 @@
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 
-export function seedDatabase(firebase) {
+export async function seedDatabase(firebase) {
+  const db = getFirestore(firebase);
+  
     const users = [
       {
         userId: 'NvPY9M9MzFTARQ6M816YAzDJxZ72',
@@ -40,14 +43,14 @@ export function seedDatabase(firebase) {
     ];
   
     for (let k = 0; k < users.length; k++) {
-      firebase.firestore().collection('users').add(users[k]);
+      const col = collection(db,'users');
+      const add = await addDoc(col,users[k]);
     }
 
     for (let i = 1; i <= 5; ++i) {
-      firebase
-        .firestore()
-        .collection('photos')
-        .add({
+      const col = collection(db,'photos');
+      await addDoc(col,
+      {
           photoId: i,
           userId: '2',
           imageSrc: `/images/users/raphael/${i}.jpg`,
