@@ -1,11 +1,20 @@
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Suspense, lazy } from "react";
 
-import './App.css';
+const Login = lazy(() => import("./pages/login"));
+const Home = lazy(() => import('./pages/Home'));
 
 function App() {
   return (
-    <div className="App">
-      <div>Hello world</div>
-    </div>
+    <Router>
+      <Suspense fallback={<p>Loading....</p>}>
+        <Routes>
+          <Route path="/" exact element={<Home/>}/>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Suspense>
+    </Router>
   );
 }
 
