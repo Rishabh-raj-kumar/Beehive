@@ -1,8 +1,9 @@
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Suspense, lazy } from "react";
+import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
+import * as ROUTES from './constants/routes';
 
-const Login = lazy(() => import("./pages/login"));
+const Login = lazy(() => import('./pages/login'));
 const Home = lazy(() => import('./pages/Home'));
 
 function App() {
@@ -10,8 +11,8 @@ function App() {
     <Router>
       <Suspense fallback={<p>Loading....</p>}>
         <Routes>
-          <Route path="/" exact element={<Home/>}/>
-          <Route path="/login" element={<Login />} />
+          <Route path={ROUTES.DASHBOARD} exact element={<Home/>}/>
+          <Route path={ROUTES.LOGIN} element={<Login />} />
         </Routes>
       </Suspense>
     </Router>

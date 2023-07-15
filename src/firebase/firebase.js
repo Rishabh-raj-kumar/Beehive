@@ -2,7 +2,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 // eslint-disable-next-line linebreak-style
-import { getAnalytics } from 'firebase/analytics';
+// import { getAnalytics } from 'firebase/analytics';
 import { Firestore } from 'firebase/firestore';
 
 // needed it once for exporting data to cloud datastore.
@@ -20,7 +20,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
-const analytics = getAnalytics(firebase);
+// const analytics = getAnalytics(firebase);
 const FieldValue = Firestore;
 
 export { firebase, FieldValue };
