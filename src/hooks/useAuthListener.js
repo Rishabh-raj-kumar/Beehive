@@ -13,6 +13,8 @@ function useAuthListener() {
                 setUser(authUser);
             }else{
                 //we dont have authUser therefore clear it out.
+                //logic behind these when user will signOut 
+                //firebase will detect the change and remove it also you remove it from local.
                localStorage.removeItem('authUser');
                setUser(null);
             }
