@@ -1,11 +1,12 @@
 /* disable eslint */
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
 import Firebasecontext from "../context/firebase";
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import * as ROUTES from '../constants/routes';
 
 function Login() {
+  const navigate = useNavigate();
   const firebase = useContext(Firebasecontext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +21,7 @@ function Login() {
        const resp = await signInWithEmailAndPassword(auth,email,password);
        if(resp){
         alert('Logined success');
-        <Navigate to={ROUTES.DASHBOARD}/>
+        navigate(`${ROUTES.DASHBOARD}`);
        }
     } catch (error) {
        setEmail('');

@@ -6,7 +6,6 @@ import Sidebar from '../Components/sidebar'
 function Dashboard() {
   return (
     <>
-    <div>Dashboard</div>
     <Header />
     <Timeline/>
     <Sidebar/>
