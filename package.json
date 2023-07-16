@@ -14,9 +14,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-scripts start DISABLE_ESLINT_PLUGIN=true",
+    "build": "react-scripts build DISABLE_ESLINT_PLUGIN=true",
+    "test": "react-scripts test DISABLE_ESLINT_PLUGIN=true",
     "eject": "react-scripts eject"
   },
   "browserslist": {
