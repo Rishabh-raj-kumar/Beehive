@@ -1,5 +1,5 @@
 import {  firebase, FieldValue } from '../firebase/firebase';
-import {collection, getDocs, getFirestore, onSnapshot, query, where} from 'firebase/firestore'
+import {collection, getDocs, getFirestore, limit, onSnapshot, query, where} from 'firebase/firestore'
 export async function doesUserExist(username){
     const db = getFirestore(firebase);
     const result = collection(db,'users');
@@ -24,4 +24,11 @@ export async function getUserByUserId(uid){
     }));
 
     return user;
+}
+
+export async function getSuggestedProfiles(userId){
+    const db = getFirestore(firebase);
+    const result = collection(db,'users');
+    const q = query(result, limit(3));
+    const querySnapshot = await getDocs(q);
 }

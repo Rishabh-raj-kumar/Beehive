@@ -19,8 +19,10 @@ function Sidebar() {
 
   return (
     <>
+    <div className='p-4'>
     <User fullname={fullname} username={username}/>
     <Suggestions userId={userId}/>
+    </div>
     </>
   )
 }

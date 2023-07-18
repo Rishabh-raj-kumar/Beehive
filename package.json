@@ -33,6 +33,7 @@
     ]
   },
   "devDependencies": {
+    "@welldone-software/why-did-you-render": "^7.0.1",
     "tailwindcss": "^3.3.3"
   }
 }
