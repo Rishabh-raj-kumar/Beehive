@@ -1,12 +1,13 @@
 import React from 'react'
-
-function User({ fullname, username}) {
-  return (
-    <div>
-      <h1>{username}</h1>
-      <h2>{fullname}</h2>
-    </div>
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import { Link } from 'react-router-dom';
+const User = ({ fullname, username}) => 
+  !username || !fullname ? (
+    <Skeleton count={2} height={30} width={100}/>
+  ) : (
+     <Link to={`/p/${username}`} className="grid">
+      <p>{username}</p>
+      </Link>
   )
-}
 
 export default User;
