@@ -15,7 +15,7 @@ function App() {
 
   const {user} = useAuthListener();
   return (
-    <userContext.Provider value={{ user }}>
+    <userContext.Provider value={{user}}>
     <Router>
       <Suspense fallback={<p>Loading....</p>}>
         <Routes>

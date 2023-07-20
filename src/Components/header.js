@@ -8,8 +8,7 @@ import {firebase} from '../firebase/firebase';
 function Header() {
     const auth = getAuth(firebase);
   const {user} = useContext(userContext);
-
-  console.log("user", user);
+  
   return (
     <header className="w-full h-16 bg-slate-200 p-2">
       <div className="flex flex-wrap justify-around items-center">
