@@ -78,7 +78,9 @@ export async function updateFolllowedUserFollowers(profileId,loggedInUserDocId,i
         docId : doc.id    
        }))
 
+       //check wether we are able to fetch photos..
        console.log(userFollowedPhotos);
+       
      const PhotoWithUserDetails = await Promise.all(
         userFollowedPhotos.map(async (photo) =>{
             let userLikedPhotO = false;
