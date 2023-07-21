@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import {updateFolllowedUserFollowers,updateLoggedInUserFollowing} from '../../services/firebase';
 
 export default function SuggestedProfile({key,spDocId,profileId,username , userId, loggedInUserDocId }) {
     const [followed,setFollowed] = useState(false);
 
-    async function handleFolloeUser(){
+    async function handleFollowUser(){
         setFollowed(true);
 
-        await updateLoggedInUserFollowing(loggedInUserDocId,profileId);
+        //firsly update following
+        await updateLoggedInUserFollowing(loggedInUserDocId,profileId,false);
 
-        await updateFolllowedUserFollowers(spDocId, userId);
+        //then update follwing person follower count.
+        await updateFolllowedUserFollowers(spDocId, userId, false);
     }
   return !followed ? (
-    <div className=' flex items-center justify-between flex-row m-3'>
+    <div key={key} className=' flex items-center justify-between flex-row m-3'>
         <div className='flex items-center justify-between'>
            <img className='rounded-full w-8 flex mr-3'
            src={`/images/avatars/${username}.jpg`}/>
@@ -21,7 +24,7 @@ export default function SuggestedProfile({key,spDocId,profileId,username , userI
            </Link>
            </div>
            <div>
-            <button onClick={() => console.log('follow this account')}
+            <button onClick={handleFollowUser}
             >Follow</button>
         </div>
     </div>

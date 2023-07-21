@@ -25,14 +25,6 @@ function Suggestions({ userId, following }) {
         <Skeleton count={2} height={100} className="mt-5" />
       ) : profile.length > 0 ? (
         <div>
-          {/* {profile.map((x) =>(
-            <SuggestedProfile
-               key={x.docId}
-               userDoc = {x.docId}
-               username = {x.username}
-               profileId = {x.userId}
-               userId = {userId}/>
-          ))} */}
           {profile.map((x => (
             <div>
             <SuggestedProfile
