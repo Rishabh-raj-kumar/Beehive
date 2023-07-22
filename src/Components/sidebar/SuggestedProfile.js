@@ -9,7 +9,11 @@ export default function SuggestedProfile({key,spDocId,profileId,username , userI
         setFollowed(true);
 
         //firsly update following
-        await updateLoggedInUserFollowing(loggedInUserDocId,profileId,false);
+        const res = await updateLoggedInUserFollowing(loggedInUserDocId,profileId,false);
+        if(res !== '' || res !== null){
+          alert('followed user');
+          location.reload();
+        }
 
         //then update follwing person follower count.
         await updateFolllowedUserFollowers(spDocId, userId, false);

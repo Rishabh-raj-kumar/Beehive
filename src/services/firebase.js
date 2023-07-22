@@ -43,12 +43,13 @@ export async function getSuggestedProfiles(userId,following){
 
 export async function updateLoggedInUserFollowing(loggedInUserDocId,profileId,isFollowingProfile){
    const db = getFirestore(firebase);
+   console.log(loggedInUserDocId);
    const docs = doc(db,'users',loggedInUserDocId);
 
    const res = await updateDoc(docs,{
          following :  isFollowingProfile
-         ? arrayRemove(profileId)
-         : arrayUnion(profileId)
+         ? arrayRemove(`${profileId}`)
+         : arrayUnion(`${profileId}`)
    })
 
    return res;
