@@ -1,6 +1,8 @@
 import React, { useRef } from 'react'
 import Header from './header'
 import Actions from './actions'
+import Footer from './Footer';
+import Comments from './comments';
 
 function Post({ key, content}) {
   const commonInput = useRef(null);
@@ -16,6 +18,15 @@ function Post({ key, content}) {
     totalLikes={content.likes.length}
     likedPhoto={content.userLikedPhotO}
     handleFocus={handleFocus}/>
+
+    <Footer caption={content.caption} username={content.username}/>
+
+    <Comments
+     docId={content.docId}
+     comments={content.comments}
+     posted={content.dateCreated}
+     commentInput={commonInput}
+    />
     </div>
   )
 }

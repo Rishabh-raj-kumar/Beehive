@@ -61,6 +61,7 @@ export default function Actions({
             />
           </svg>
           <svg
+          onClick={handleFocus}
           width="40px"
           height="40px"
             xmlns="http://www.w3.org/2000/svg"
@@ -78,6 +79,7 @@ export default function Actions({
           </svg>
         </div>
       </div>
+      <p className="p-4 pt-0 pb-2 font-semibold">likes {likes}</p>
     </>
   );
 }
