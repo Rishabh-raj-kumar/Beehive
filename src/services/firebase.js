@@ -80,7 +80,7 @@ export async function updateFolllowedUserFollowers(profileId,loggedInUserDocId,i
        }))
 
        //check wether we are able to fetch photos..
-       console.log(userFollowedPhotos);
+    //    console.log(userFollowedPhotos);
        
      const PhotoWithUserDetails = await Promise.all(
         userFollowedPhotos.map(async (photo) =>{
@@ -97,3 +97,16 @@ export async function updateFolllowedUserFollowers(profileId,loggedInUserDocId,i
 
      return PhotoWithUserDetails;
  }
+
+ export async function getUserByUserName(username){
+    const db = getFirestore(firebase);
+    const result = collection(db,'users');
+    const q = query(result, where("username", "==", username));
+    const querySnapshot = await getDocs(q);
+    let results = querySnapshot.docs.map((doc) => (
+         {...doc.data(),
+          docId : doc.id
+         }));
+
+    return results.length > 0 ? results : false;
+}
