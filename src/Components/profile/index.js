@@ -41,6 +41,7 @@ export default function Profile({ username }) {
   username={username}
   user={user}/>
 
+   <hr className=" mt-3 border-1 border-gray-400"/>
   <Photos photo={photosCollection}/>
   </>)
 }

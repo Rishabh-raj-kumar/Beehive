@@ -138,3 +138,15 @@ export async function isUserFollowingProfile(loggedInUsername,profileUserId){
     return results;
 }
 
+export async function toggleFollowUser(
+    isFollowingProfile,
+    activeUserDocId,
+    profileDocId,
+    profileUserId,
+    followingUserId
+){
+    // console.log()
+    await updateLoggedInUserFollowing(activeUserDocId,profileDocId,isFollowingProfile);
+    await updateFolllowedUserFollowers(profileDocId,followingUserId,isFollowingProfile);
+
+}
