@@ -110,3 +110,31 @@ export async function updateFolllowedUserFollowers(profileId,loggedInUserDocId,i
 
     return results.length > 0 ? results : false;
 }
+
+export async function getUserPhotosByUserName(username){
+    const [user] = await getUserByUserName(username);
+    const db = getFirestore(firebase);
+    const result = collection(db,'photos');
+    const q = query(result, where("userId", "==", user.userId));
+    const res = await getDocs(q);
+
+    return res.docs.map((item) =>({
+      ...item.data(),
+      docId : item.id
+    }))
+}
+
+export async function isUserFollowingProfile(loggedInUsername,profileUserId){
+    const db = getFirestore(firebase);
+    const result = collection(db,'users');
+    const q = query(result,where("username", "==", loggedInUsername),where('following','array-contains',profileUserId));
+    const querySnapshot = await getDocs(q);
+
+    const [results = {}] = querySnapshot.docs.map((doc) => (
+         {...doc.data(),
+          docId : doc.id
+         }));
+
+    return results;
+}
+
