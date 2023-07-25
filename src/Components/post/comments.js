@@ -21,7 +21,7 @@ export default function Comments({docId, comments : allComments, posted, comment
                     <span>{item.comment}</span>
                 </p>
             ))}
-            <p className=" text-sm text-gray-500 font-medium">{formatDistance(posted, new Date())} ago</p>
+            {/* <p className=" text-sm text-gray-500 font-medium">{formatDistance(posted, new Date())} ago</p> */}
          </div>
          <AddComments
            docId={docId}
