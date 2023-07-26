@@ -54,7 +54,7 @@ export async function getUserByUserId(uid){
 export async function getSuggestedProfiles(userId,following){
     const db = getFirestore(firebase);
     const result = collection(db,'users');
-    const q = query(result, limit(3));
+    const q = query(result, limit(5));
     const querySnapshot = await getDocs(q);
 
     let user = querySnapshot.docs.map((doc) => ({
