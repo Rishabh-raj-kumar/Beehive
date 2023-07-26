@@ -14,6 +14,7 @@ export default function Profile(){
     useEffect(() =>{
            async function checkUserExists(){
             try{
+                // console.log(username)
             const result = await getUserByUserName(username);
             if(result.length > 0){
                 setUser(result[0]);

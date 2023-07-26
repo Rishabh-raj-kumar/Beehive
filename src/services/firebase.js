@@ -22,7 +22,7 @@ export async function uploadProfilePhoto(profileDocId,file,userId,setLoading){
     setLoading(false);
     alert('file uploaded');
 
-    return res;
+    return true;
 }
 
 export async function doesUserExist(username){

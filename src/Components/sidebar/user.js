@@ -6,8 +6,8 @@ export default function User({ fullname, username,image}){
     <Skeleton count={2} height={30} width={100}/>
   ) : (
      <Link to={`/p/${username}`} className="grid grid-cols-4 gap-4 mb-6">
-      <div className='flex items-center justify-between col-span-1'>
-         <img className='w-16 rounded-full mr-3' 
+      <div className='flex items-center justify-between col-span-1 object-cover'>
+         <img className='w-16 h-16 rounded-full mr-3 object-cover' 
          src={image ? `${image}` :`https://api.multiavatar.com/Binx Bond.svg`} />
       </div>
       <div className='col-span-3'>

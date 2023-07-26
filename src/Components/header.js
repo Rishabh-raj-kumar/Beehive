@@ -28,9 +28,6 @@ function Header() {
             onClick={() => signOut(auth)}>
                 LOGOUT
             </button>
-            <Link to={`/p/${user.displayName}`}>
-                <li className=" list-none">PROFILE</li>
-            </Link>
             </>
             ) : (
                 <>

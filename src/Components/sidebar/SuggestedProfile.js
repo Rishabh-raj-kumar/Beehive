@@ -20,8 +20,8 @@ export default function SuggestedProfile({key,spDocId,profileId,username , userI
     }
   return !followed ? (
     <div key={key} className=' flex items-center justify-between flex-row m-3'>
-        <div className='flex items-center justify-between'>
-           <img className='rounded-full w-8 flex mr-3'
+        <div className='flex items-center justify-between object-cover'>
+           <img className='rounded-full w-8 flex mr-3 object-cover'
            src={`/images/avatars/${username}.jpg`}/>
            <Link to={`/p/${username}`}>
             <p className='font-bold text-sm'>{username}</p>

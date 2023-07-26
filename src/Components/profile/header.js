@@ -45,9 +45,15 @@ export default function Header({ photosCount,
         setPhoto(e.target.files[0]);
       }
     }
-    const handleUpload = (e) =>{
-      uploadProfilePhoto(profileDocId,photo,profileUserId,setLoading);
-      location.reload();
+    const handleUpload = async(e) =>{
+      try{
+      const reso = await uploadProfilePhoto(profileDocId,photo,profileUserId,setLoading);
+      if(reso){
+       location.reload();
+      }
+    }catch(err){
+      consol.log(err)
+    }
     }
   return (
     <>
