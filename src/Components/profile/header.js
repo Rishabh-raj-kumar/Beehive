@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
-import { isUserFollowingProfile, toggleFollowUser } from '../../services/firebase';
+import { isUserFollowingProfile, toggleFollowUser,uploadProfilePhoto } from '../../services/firebase';
 import Skeleton from 'react-loading-skeleton';
 
 export default function Header({ photosCount,
-  profile : {docId : profileDocId, userId : profileUserId,fullname,followers,following}
+  profile : {docId : profileDocId, userId : profileUserId,fullname,image : img,followers,following}
   ,followerCount,setFollowerCount,username : profileUsername,user}) {
 
     const [isFollowing,setIsFollowing] = useState(following);
+    const [photo,setPhoto] = useState(null);
+    const [loading,setLoading] = useState(false);
 
     // const [activebtn,setActiveBtn] = useState(user[0].username && user[0].username !== profileUsername);
 
@@ -37,14 +39,24 @@ export default function Header({ photosCount,
 
           isLoggedInUserFollowingProfile();
     },[profileUserId])
+
+    const handleChange = (e) =>{
+      if(e.target.files[0]){
+        setPhoto(e.target.files[0]);
+      }
+    }
+    const handleUpload = (e) =>{
+      uploadProfilePhoto(profileDocId,photo,profileUserId,setLoading);
+      location.reload();
+    }
   return (
     <>
-    {console.log(profileUsername)}
+    {/* {console.log(img)} */}
     {/* {console.log(user[0])} */}
      <div className='mt-3 grid grid-cols-3 gap-4 justify-between max-w-lg-screen'>
       <div className='container flex justify-center'>
         <img className='rounded-full w-28 h-28'
-        src={`/images/avatars/${profileUsername}.jpg`}/>
+        src={img ? `${img}` :`https://api.multiavatar.com/Binx Bond.svg`}/>
       </div>
       <div className='flex items-center justify-center flex-col col-span-2'>
       <div className='container flex items-center'>
@@ -69,6 +81,12 @@ export default function Header({ photosCount,
        </p></>)}
       </div>
      </div>
+     </div>
+     <div>
+      <input type='file' onChange={handleChange}/>
+      <button type="button" onClick={handleUpload}
+      disabled={loading || !photo}
+      className=' bg-blue-400 p-2 rounded'>upload</button>
      </div>
     </>
   )

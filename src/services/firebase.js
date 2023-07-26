@@ -1,5 +1,30 @@
 import {  firebase } from '../firebase/firebase';
-import {FieldValue, arrayRemove, arrayUnion, collection, doc, getDocs, getFirestore, limit, onSnapshot, query, updateDoc, where} from 'firebase/firestore'
+import {FieldValue, addDoc, arrayRemove, arrayUnion, collection, doc, getDocs, getFirestore, limit, onSnapshot, query, updateDoc, where} from 'firebase/firestore'
+import {getDownloadURL, getStorage, ref, uploadBytes} from 'firebase/storage'
+
+const storage = getStorage(firebase);
+//uploading user profile photo...
+export async function uploadProfilePhoto(profileDocId,file,userId,setLoading){
+    const db = getFirestore(firebase);
+    const docs = doc(db,'users',profileDocId);
+
+    const filref = ref(storage, userId + '.png');
+     setLoading(true);
+    const snap = await uploadBytes(filref,file);
+    const photoUrl = await getDownloadURL(filref);
+
+    
+    const res = await updateDoc(docs,{
+        image : photoUrl
+  })
+
+    
+    setLoading(false);
+    alert('file uploaded');
+
+    return res;
+}
+
 export async function doesUserExist(username){
     const db = getFirestore(firebase);
     const result = collection(db,'users');
@@ -43,7 +68,7 @@ export async function getSuggestedProfiles(userId,following){
 
 export async function updateLoggedInUserFollowing(loggedInUserDocId,profileId,isFollowingProfile){
    const db = getFirestore(firebase);
-   console.log(loggedInUserDocId);
+//    console.log(loggedInUserDocId);
    const docs = doc(db,'users',loggedInUserDocId);
 
    const res = await updateDoc(docs,{

@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "faker": "^6.6.6",
     "firebase": "^10.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -33,6 +34,7 @@
     ]
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
     "@welldone-software/why-did-you-render": "^7.0.1",
     "tailwindcss": "^3.3.3"
   }

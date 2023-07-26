@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase
 import * as ROUTES from "../constants/routes";
 import { doesUserExist } from "../services/firebase";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { faker } from '@faker-js/faker'
 
 function SignUp() {
   const navigate = useNavigate();
@@ -35,8 +36,10 @@ function SignUp() {
           userId : createdUserresult.user.uid,
           username : username.toLowerCase(),
           fullname,
+          image : faker.image.avatar(),
           emailAddress : email.toLowerCase(),
-          following : [],
+          followers : [],
+          following : ["2"],
           dateCreated : Date.now()
         })
 

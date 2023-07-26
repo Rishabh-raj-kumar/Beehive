@@ -10,15 +10,17 @@ function Sidebar() {
   const [userId,setUserId] = useState('');
   const [following,setFollowing] = useState('');
   const [docId,setDoc] = useState('');
+  const [image,setImage] =useState('');
 
   useEffect(() =>{
     try{
     if(user){
       // usr was in first index of array so we used shift..
-      const {fullname,username,userId,following, docId} = user.shift();
+      const {fullname,username,userId,image,following, docId} = user.shift();
       console.log()
       setFullName(fullname);
       setUserName(username);
+      setImage(image);
       setUserId(userId);
       setFollowing(following);
       setDoc(docId);
@@ -31,7 +33,7 @@ function Sidebar() {
   return (
     <>
     <div className='p-4'>
-    <User fullname={fullname} username={username}/>
+    <User fullname={fullname} username={username} image={image}/>
     <Suggestions userId={userId} following={following} loggedInUserDocId={docId}/>
     </div>
     </>
