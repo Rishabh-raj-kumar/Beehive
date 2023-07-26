@@ -24,6 +24,9 @@ function Header() {
             <Link to={ROUTES.DASHBOARD}>
                 <li className=" list-none">HOME</li>
             </Link>
+            <Link to={ROUTES.AddPost}>
+                <li className=" list-none">CREATE</li>
+            </Link>
             <button
             onClick={() => signOut(auth)}>
                 LOGOUT

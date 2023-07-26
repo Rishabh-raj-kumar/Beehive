@@ -30,16 +30,18 @@ function SignUp() {
           displayName : username
         })
 
+        const id = createdUserresult.user.uid;
+
         const db = getFirestore(firebase);
         const col = collection(db,'users');
         await addDoc(col,{
-          userId : createdUserresult.user.uid,
+          userId : id,
           username : username.toLowerCase(),
           fullname,
           image : faker.image.avatar(),
           emailAddress : email.toLowerCase(),
           followers : [],
-          following : ["2"],
+          following : [id],
           dateCreated : Date.now()
         })
 

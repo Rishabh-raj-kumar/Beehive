@@ -10,6 +10,7 @@ const Login = lazy(() => import("./pages/login"));
 const NotFound = lazy(() => import("./pages/Notfound"));
 const Dashboard = lazy(() => import("./pages/dashboard"));
 const Profile = lazy(() => import("./pages/Profile"));
+const Post = lazy(() => import('./Components/post/Post'));
 
 import UserIsLoggedIn from "./helpers/userLoggedIn";
 
@@ -31,6 +32,7 @@ function App() {
             <Route path={ROUTES.LOGIN} element={<Login />} />
             <Route path={ROUTES.Signup} element={<Signup />} />
             <Route path={ROUTES.profile} element={<Profile />} />
+            <Route path={ROUTES.AddPost} element={<Post/>}/>
             <Route path={"*"} element={<NotFound />} />
           </Routes>
         </Suspense>
