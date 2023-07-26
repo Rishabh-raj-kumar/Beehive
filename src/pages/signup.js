@@ -7,6 +7,7 @@ import * as ROUTES from "../constants/routes";
 import { doesUserExist } from "../services/firebase";
 import { addDoc, collection, getFirestore } from "firebase/firestore";
 import { faker } from '@faker-js/faker'
+import { useMediaQuery } from 'react-responsive'
 
 function SignUp() {
   const navigate = useNavigate();
@@ -16,6 +17,8 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const inValid = email === "" || password === "";
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 770px)' })
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -67,14 +70,16 @@ function SignUp() {
     <>
       <div className="container mx-auto max-w-screen-md h-screen flex flex-wrap md:flex-nowrap items-center">
         <div className="w-full md:w-3/5 flex items-center justify-center m-3">
+        {!isTabletOrMobile && 
           <img
             src="/images/iphone-with-profile.jpg"
-            className=" w-20 md:w-3/4"
+            className=" md:w-3/4"
             alt="image"
           />
+        }
         </div>
         <div className="flex flex-col justify-center gap-3 w-full md:w-2/5 h-full">
-          <h1 className="text-4xl font-medium capitalize m-3">Instagram</h1>
+          <h1 className="text-4xl font-medium capitalize m-3">MeetChat</h1>
           {error && <p>{error}</p>}
           <form
             onSubmit={handleLogin}

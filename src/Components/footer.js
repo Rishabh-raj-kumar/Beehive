@@ -2,10 +2,13 @@ import React, { useContext, useEffect, useState } from "react";
 import * as ROUTES from "../constants/routes";
 import { useMediaQuery } from "react-responsive";
 import useUser from "../hooks/useuser";
+import { firebase } from "../firebase/firebase";
 import userContext from "../context/usercontext";
 import { Link } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
 
 function Footer() {
+    const auth = getAuth(firebase);
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 770px)" });
   const { user: profile } = useUser();
   const { user } = useContext(userContext);
