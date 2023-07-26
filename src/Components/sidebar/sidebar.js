@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import useUser  from '../../hooks/useuser';
 import Suggestions from './suggestion';
-import User from './user';
 
 function Sidebar() {
   const { user } = useUser();
@@ -32,8 +31,7 @@ function Sidebar() {
 
   return (
     <>
-    <div className='p-4'>
-    <User fullname={fullname} username={username} image={image}/>
+    <div className='suggestion p-4 fixed top-12 right-10'>
     <Suggestions userId={userId} following={following} loggedInUserDocId={docId}/>
     </div>
     </>

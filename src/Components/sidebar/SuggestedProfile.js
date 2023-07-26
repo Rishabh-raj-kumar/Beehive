@@ -19,7 +19,7 @@ export default function SuggestedProfile({key,spDocId,profileId,username , userI
         await updateFolllowedUserFollowers(spDocId, userId, false);
     }
   return !followed ? (
-    <div key={key} className=' flex items-center justify-between flex-row m-3'>
+    <div key={key} className=' flex w-full items-center justify-between flex-row m-3 bg-white shadow p-3 px-5'>
         <div className='flex items-center justify-between object-cover'>
            <img className='rounded-full w-8 flex mr-3 object-cover'
            src={`/images/avatars/${username}.jpg`}/>
@@ -28,7 +28,8 @@ export default function SuggestedProfile({key,spDocId,profileId,username , userI
            </Link>
            </div>
            <div>
-            <button onClick={handleFollowUser}
+            <button className=' bg-blue-600 p-1 px-2 rounded text-white' 
+            onClick={handleFollowUser}
             >Follow</button>
         </div>
     </div>

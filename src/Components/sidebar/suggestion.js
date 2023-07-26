@@ -24,7 +24,8 @@ function Suggestions({ userId, following, loggedInUserDocId }) {
       {profile.length === 0 ? (
         <Skeleton count={2} height={100} className="mt-5" />
       ) : profile.length > 0 ? (
-        <div>
+        <div className="w-full mx-5">
+           <h2 className=" pl-2 font-semibold ">Suggestions for You.</h2>
           {profile.map((x => (
             <div>
             <SuggestedProfile

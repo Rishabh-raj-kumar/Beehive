@@ -22,7 +22,7 @@ function Post({ key, content}) {
   },[user])
 
   return (
-    <div className=' rounded bg-white mb-8 col-span-4 border mt-2 shadow'>
+    <div className='mx-3 rounded-md bg-white mb-8 col-span-4 border mt-2 shadow'>
     <Header username={content.username} img={image}/>
     <img src={content.imageSrc}/>
     <Actions 

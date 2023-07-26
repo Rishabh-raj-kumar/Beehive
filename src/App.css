@@ -1,1 +1,23 @@
 @import "react-loading-skeleton/dist/skeleton.css";
+
+body{
+    min-height: 100vh;
+    position: relative;
+    background: rgb(204, 204, 204);
+}
+.header{
+   background: rgba(255, 255, 255, 0.548);
+}
+
+@media (max-width:780px) {
+    .suggestion{
+        display: none;
+    }
+    .header{
+        position: static;
+    }
+    .nav{
+         position: fixed;
+         bottom: 0;
+    }
+}
