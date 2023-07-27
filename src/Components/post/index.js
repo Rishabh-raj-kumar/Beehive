@@ -3,27 +3,29 @@ import Header from './header'
 import Actions from './actions'
 import Footer from './Footer';
 import Comments from './comments';
-import useUser from '../../hooks/useuser';
+import { getUserByUserId } from '../../services/firebase';
 
 function Post({ key, content}) {
   const commonInput = useRef(null);
-  const {user} = useUser();
   const handleFocus = () => commonInput.current.focus();
-  const [image,setImage] = useState(null)
+  const [profileImage,setProfileImage] = useState(null);
 
   useEffect(() =>{
+    async function getUser(){
     try{
-       if(user){
-        setImage(user[0].image);
-       }
-      }catch(err){
-        console.log(err)
-      }
-  },[user])
+      const res = await getUserByUserId(content.userId);
+      //  console.log(res)
+      setProfileImage(res[0].image);
+    }catch(err){
+      console.log(err)
+    }
+  }
+  getUser();
+  })
 
   return (
     <div className='mx-3 rounded-md bg-white mb-8 col-span-4 border mt-2 shadow'>
-    <Header username={content.username} img={image}/>
+    <Header username={content.username} img={profileImage}/>
     <img src={content.imageSrc}/>
     <Actions 
     content={content}

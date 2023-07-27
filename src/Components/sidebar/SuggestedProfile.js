@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import {updateFolllowedUserFollowers,updateLoggedInUserFollowing} from '../../services/firebase';
+import {getUserByUserId, updateFolllowedUserFollowers,updateLoggedInUserFollowing} from '../../services/firebase';
 
 export default function SuggestedProfile({key,spDocId,profileId,username , userId, loggedInUserDocId }) {
     const [followed,setFollowed] = useState(false);
+    const [image,setImage] = useState(null);
 
     async function handleFollowUser(){
         setFollowed(true);
@@ -18,11 +19,20 @@ export default function SuggestedProfile({key,spDocId,profileId,username , userI
         //then update follwing person follower count.
         await updateFolllowedUserFollowers(spDocId, userId, false);
     }
+
+    useEffect(() =>{
+      async function getUser(){
+          const res = await getUserByUserId(profileId);
+          // console.log("user",res)
+          setImage(res[0].image)
+      }
+      getUser();
+    })
   return !followed ? (
     <div key={key} className=' flex w-full items-center justify-between flex-row m-3 bg-white shadow p-3 px-5'>
         <div className='flex items-center justify-between object-cover'>
            <img className='rounded-full w-8 flex mr-3 object-cover'
-           src={`/images/avatars/${username}.jpg`}/>
+           src={`${image}`}/>
            <Link to={`/p/${username}`}>
             <p className='font-bold text-sm'>{username}</p>
            </Link>

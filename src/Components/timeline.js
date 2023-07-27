@@ -1,10 +1,8 @@
 import React from 'react'
-import usePhotos from '../hooks/usePhotos'
 import Skeleton from 'react-loading-skeleton';
 import Post from './post/index';
 
-function Timeline() {
-  const { photos } = usePhotos();
+function Timeline({photos}) {
   
   return (
     <div className='container col-span-2'>
@@ -19,7 +17,9 @@ function Timeline() {
         </>
       ) : photos.length > 0 ? (
           photos.map((content) =>(
+            <>
             <Post key={content.docId} content={content}/>
+            </>
           ))
       ) : (
         <>

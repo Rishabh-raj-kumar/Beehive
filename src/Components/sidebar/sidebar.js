@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import useUser  from '../../hooks/useuser';
 import Suggestions from './suggestion';
+import { getUserByUserId } from '../../services/firebase';
 
-function Sidebar() {
+function Sidebar({photos}) {
   const { user } = useUser();
   const [fullname,setFullName] = useState('');
   const [username,setUserName] = useState('');
@@ -10,6 +11,7 @@ function Sidebar() {
   const [following,setFollowing] = useState('');
   const [docId,setDoc] = useState('');
   const [image,setImage] =useState('');
+  console.log(photos);
 
   useEffect(() =>{
     try{
@@ -29,10 +31,23 @@ function Sidebar() {
   }
   },[user])
 
+  useEffect(() =>{
+    async function getUser(){
+    try{
+      const res = await getUserByUserId(content.userId);
+      //  console.log(res)
+      setProfileImage(res[0].image);
+    }catch(err){
+      console.log(err)
+    }
+  }
+  getUser();
+  })
+
   return (
     <>
     <div className='suggestion p-4 fixed top-12 right-10'>
-    <Suggestions userId={userId} following={following} loggedInUserDocId={docId}/>
+    <Suggestions userId={userId} following={following} loggedInUserDocId={docId} image={image}/>
     </div>
     </>
   )
