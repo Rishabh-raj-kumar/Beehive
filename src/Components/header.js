@@ -31,7 +31,7 @@ function Header() {
       <div className="flex flex-wrap justify-around items-center">
         <div className="p-1">
           <Link to={ROUTES.DASHBOARD}>
-            <h1 className=" text-2xl font-semibold uppercase tracking-wide ">MeetChat</h1>
+            <img src={'/images/logo_bee2.svg'}/>
           </Link>
         </div>
         <div className={`${isTabletOrMobile && `hidden`} flex gap-5 bottom-0 left-0`}>

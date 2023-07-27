@@ -40,18 +40,19 @@ function Login() {
 
   return (
     <>
-      <div className="container mx-auto max-w-screen-md h-screen flex flex-wrap md:flex-nowrap items-center">
+      <div className=" container mx-auto max-w-screen-md h-screen flex flex-wrap md:flex-nowrap items-center">
         <div className="w-full md:w-3/5 flex items-center justify-center m-3">
         {!isTabletOrMobile && 
           <img
-            src="/images/iphone-with-profile.jpg"
-            className=" md:w-3/4"
+            src="/images/mobile.svg"
+            className=" md:w-3/4 mix-blend-darken animate"
             alt="image"
+
           />
         }
         </div>
         <div className="flex flex-col justify-center gap-3 w-full md:w-2/5 h-full">
-          <h1 className="text-4xl font-medium capitalize m-3">MeetChat</h1>
+        <img src={'/images/logo_bee2.svg'}/>
           {error && <p>{error}</p>}
           <form
             onSubmit={handleLogin}
@@ -62,8 +63,8 @@ function Login() {
               type="email"
               placeholder="Email address"
               value={email}
-              className="p-3 text-lg outline-none border-1 shadow-xl focus:outline-2 focus:outline-purple-600 outline-offset-2 rounded
-           focus:scale-110 focus:backdrop:blur-md delay-100 focus:shadow-purple-300 focus:bg-purple-800 focus:text-white ease-in-out"
+              className="p-3 text-lg outline-none border-1 shadow-xl focus:outline-2 focus:outline-slate-950 outline-offset-2 rounded
+              focus:backdrop:blur-md delay-100 bg-slate-950 text-yellow-400 ease-in-out"
               onChange={(e) => setEmail(e.target.value)}
             />
 
@@ -71,15 +72,15 @@ function Login() {
               type="password"
               placeholder="Password"
               value={password}
-              className="p-3 text-lg outline-none border-1 shadow-xl focus:outline-2 focus:outline-purple-600 outline-offset-2 rounded
-           focus:scale-110 focus:backdrop:blur-md delay-100 focus:shadow-purple-300 focus:bg-purple-800 focus:text-white ease-in-out"
+              className="p-3 text-lg outline-none border-1 shadow-xl focus:outline-2 focus:outline-slate-950 outline-offset-2 rounded
+              focus:backdrop:blur-md delay-100 bg-slate-950 text-yellow-400 ease-in-out"
               onChange={(e) => setPassword(e.target.value)}
             />
 
             <input
             disabled={inValid}
               type="submit"
-              className={`cursor-pointer p-3 mt-4 text-lg outline-none border-1 focus:bg-yellow-400 shadow-xl 
+              className={` bg-emerald-400 cursor-pointer p-3 mt-4 text-lg outline-none border-1 focus:bg-yellow-400 shadow-xl 
               focus:outline-2 focus:outline-yellow-400 ${inValid && 'opacity-50'}`}
             />
           </form>

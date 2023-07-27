@@ -3,12 +3,23 @@
 body{
     min-height: 100vh;
     position: relative;
-    background: rgb(204, 204, 204);
+    background: hsl(226, 52%, 94%);
 }
 .header{
    background: rgba(255, 255, 255, 0.548);
 }
+.animate{
+    animation: animate 5s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+}
 
+@keyframes animate {
+    0%,100%{
+        transform: scale(1.1) perspective(500px) rotateY(20deg) translateZ(50px);
+    }
+    50%{
+        transform: translateZ(10px) rotateY(-10deg);
+    }
+}
 @media (max-width:780px) {
     .suggestion{
         display: none;
