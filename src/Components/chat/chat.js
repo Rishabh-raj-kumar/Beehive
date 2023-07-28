@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import useUser from "../../hooks/useuser";
+import Messages from './Messages';
+import Input from './input';
 
 function Chat() {
   return (
@@ -50,6 +52,8 @@ function Chat() {
           </svg>
         </div>
       </div>
+      <Messages />
+      <Input/>
     </div>
   );
 }

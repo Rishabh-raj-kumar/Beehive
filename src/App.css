@@ -32,3 +32,15 @@ body{
          bottom: 0;
     }
 }
+
+.owner{
+    flex-direction: row-reverse;
+}
+.owner p:not(.para){
+    border-radius : 0px 10px 10px 10px;
+}
+.para{
+    background-color: crimson;
+    color: white;
+    border-radius: 10px 0px 10px 10px;
+}

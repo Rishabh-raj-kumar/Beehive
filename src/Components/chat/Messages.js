@@ -3,7 +3,7 @@ import Message from './message';
 
 function Messages() {
   return (
-    <div className='messages'>
+    <div className=' bg-slate-200 p-3' style={{ height : 'calc(100% - 95px)'}}>
       <Message/>
       <Message/>
       <Message/>
