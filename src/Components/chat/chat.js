@@ -4,16 +4,16 @@ import useUser from "../../hooks/useuser";
 function Chat() {
   return (
     <div className="" style={{ flex: 2 }}>
-      <div className="chatInfo">
+      <div className=" h-12 p-2 text-slate-100 bg-slate-500 flex items-center justify-between">
         <span>Jane</span>
-        <div className="chatIcons">
+        <div className="flex gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-6 h-6"
+            class="w-5 h-5"
           >
             <path
               stroke-linecap="round"
@@ -26,7 +26,7 @@ function Chat() {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-6 h-6"
+            class="w-5 h-5"
           >
             <path
               stroke-linecap="round"
@@ -40,7 +40,7 @@ function Chat() {
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-6 h-6"
+            class="w-5 h-5"
           >
             <path
               stroke-linecap="round"
