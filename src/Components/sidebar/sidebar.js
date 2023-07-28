@@ -11,7 +11,6 @@ function Sidebar({photos}) {
   const [following,setFollowing] = useState('');
   const [docId,setDoc] = useState('');
   const [image,setImage] =useState('');
-  console.log(photos);
 
   useEffect(() =>{
     try{

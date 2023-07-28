@@ -11,7 +11,7 @@ const NotFound = lazy(() => import("./pages/Notfound"));
 const Dashboard = lazy(() => import("./pages/dashboard"));
 const Profile = lazy(() => import("./pages/Profile"));
 const Post = lazy(() => import('./Components/post/Post'));
-
+const Chat = lazy(() => import("./pages/chat"));
 import UserIsLoggedIn from "./helpers/userLoggedIn";
 
 function App() {
@@ -33,6 +33,7 @@ function App() {
             <Route path={ROUTES.Signup} element={<Signup />} />
             <Route path={ROUTES.profile} element={<Profile />} />
             <Route path={ROUTES.AddPost} element={<Post/>}/>
+            <Route path={ROUTES.Chat} element={<Chat/>}/>
             <Route path={"*"} element={<NotFound />} />
           </Routes>
         </Suspense>
