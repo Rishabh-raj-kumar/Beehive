@@ -1,12 +1,83 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import useUser from "../../hooks/useuser";
+import { ChatContext } from "../../context/chatContext";
+import {
+  Timestamp,
+  arrayUnion,
+  doc,
+  getFirestore,
+  serverTimestamp,
+  updateDoc,
+} from "firebase/firestore";
+import { firebase } from "../../firebase/firebase";
+import { v4 as uuid } from "uuid";
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 
 function Input() {
+  const db = getFirestore(firebase);
+  const [text, setText] = useState("");
+  const [img, setImg] = useState(null);
+
+  const { user } = useUser();
+  const { data } = useContext(ChatContext);
+
+  const handleChange = async () => {
+    if (img) {
+      const storage = getStorage();
+      const storageRef = ref(storage, uuid());
+      const uploadTask = uploadBytesResumable(storageRef, img);
+
+      uploadTask.on((error) =>{
+        console.log(error);
+      },() =>{
+        getDownloadURL(uploadTask.snapshot.ref).then( async (URL) =>{
+             await updateDoc(doc(db,"chats",data.chatId),{
+              messages: arrayUnion({
+                id: uuid(),
+                text,
+                senderId: user[0].userId,
+                date: Timestamp.now(),
+                img : URL
+              }),
+             })
+        })
+      })
+    } else {
+      await updateDoc(doc(db, "chats", data.chatId), {
+        messages: arrayUnion({
+          id: uuid(),
+          text,
+          senderId: user[0].userId,
+          date: Timestamp.now(),
+        }),
+      });
+    }
+
+    await updateDoc(doc(db,"userChats",user[0].userId),{
+      [data.chatId+'.lastMessage']:{
+        text
+      },
+      [data.chatId+'.date']: serverTimestamp()
+    });
+
+    await updateDoc(doc(db,"userChats",data.user.uid),{
+      [data.chatId+'.lastMessage']:{
+        text
+      },
+      [data.chatId+'.date']: serverTimestamp()
+    });
+
+    setText("");
+    setImg(null);
+  };
   return (
-    <div className=" h-12 p-3 bg-slate-300 flex items-center justify-between">
+    <div className=" z-50 h-12 p-3 bg-slate-300 flex items-center justify-between">
       <input
         type="text"
         placeholder="Enter the message..."
         className=" w-full border-none outline-none text-lg bg-slate-300 text-slate-700 placeholder:text-slate-700"
+        onChange={(e) => setText(e.target.value)}
+        value={text}
       />
       <div className="flex gap-3 items-center">
         <svg
@@ -24,7 +95,12 @@ function Input() {
           />
         </svg>
 
-        <input type="file" className="hidden" id="file" />
+        <input
+          type="file"
+          className="hidden"
+          id="file"
+          onChange={(e) => setImg(e.target.files[0])}
+        />
         <label htmlFor="file">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +117,12 @@ function Input() {
             />
           </svg>
         </label>
-        <button className="p-1 px-2 bg-blue-500 border-none outline-none">send</button>
+        <button
+          className="p-1 px-2 bg-blue-500 border-none outline-none"
+          onClick={handleChange}
+        >
+          send
+        </button>
       </div>
     </div>
   );

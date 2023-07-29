@@ -1,16 +1,16 @@
-import './wdyr';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import Firebasecontext  from './context/firebase';
-import {firebase , FieldValue} from './firebase/firebase';
+import "./wdyr";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import Firebasecontext from "./context/firebase";
+import { firebase, FieldValue } from "./firebase/firebase";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Firebasecontext.Provider value={{ firebase, FieldValue}}>
-    <App />
+  <Firebasecontext.Provider value={{ firebase, FieldValue }}>
+      <App />
   </Firebasecontext.Provider>
 );
 

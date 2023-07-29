@@ -48,6 +48,8 @@ function SignUp() {
           dateCreated : Date.now()
         })
 
+        await setDoc(collection(db,"userChats",id),{})
+
         navigate(`${ROUTES.DASHBOARD}`);
 
       } catch (error) {

@@ -2,10 +2,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
 import Firebasecontext from "../context/firebase";
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import * as ROUTES from '../constants/routes';
-import { useMediaQuery } from 'react-responsive'
-
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import * as ROUTES from "../constants/routes";
+import { useMediaQuery } from "react-responsive";
 
 function Login() {
   const navigate = useNavigate();
@@ -14,22 +13,33 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const inValid = email === "" || password === "";
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 770px)' })
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 770px)" });
 
-  const handleLogin = async(e) => {
+  const user = JSON.parse(localStorage.getItem("authUser"));
+  useEffect(() => {
+    // console.log(user)
+    try {
+      if (user) {
+        navigate(`${ROUTES.DASHBOARD}`);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }, [user]);
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
       const auth = getAuth();
-       const resp = await signInWithEmailAndPassword(auth,email,password);
-       if(resp){
-        alert('Logined success');
+      const resp = await signInWithEmailAndPassword(auth, email, password);
+      if (resp) {
+        alert("Logined success");
         navigate(`${ROUTES.DASHBOARD}`);
-       }
+      }
     } catch (error) {
-       setEmail('');
-       setPassword('');
-       setError(error.message);
+      setEmail("");
+      setPassword("");
+      setError(error.message);
       console.log(error);
     }
   };
@@ -42,17 +52,16 @@ function Login() {
     <>
       <div className=" container mx-auto max-w-screen-md h-screen flex flex-wrap md:flex-nowrap items-center">
         <div className="w-full md:w-3/5 flex items-center justify-center m-3">
-        {!isTabletOrMobile && 
-          <img
-            src="/images/mobile.svg"
-            className=" md:w-3/4 mix-blend-darken animate"
-            alt="image"
-
-          />
-        }
+          {!isTabletOrMobile && (
+            <img
+              src="/images/mobile.svg"
+              className=" md:w-3/4 mix-blend-darken animate"
+              alt="image"
+            />
+          )}
         </div>
         <div className="flex flex-col justify-center gap-3 w-full md:w-2/5 h-full">
-        <img src={'/images/logo_bee2.svg'}/>
+          <img src={"/images/logo_bee2.svg"} />
           {error && <p>{error}</p>}
           <form
             onSubmit={handleLogin}
@@ -78,17 +87,22 @@ function Login() {
             />
 
             <input
-            disabled={inValid}
+              disabled={inValid}
               type="submit"
               className={` bg-emerald-400 cursor-pointer p-3 mt-4 text-lg outline-none border-1 focus:bg-yellow-400 shadow-xl 
-              focus:outline-2 focus:outline-yellow-400 ${inValid && 'opacity-50'}`}
+              focus:outline-2 focus:outline-yellow-400 ${
+                inValid && "opacity-50"
+              }`}
             />
           </form>
           <div className="m-2 text-md">
-          <p>Dont have an account?
-            <Link to="/signup" className=" mx-2 text-lg text-blue-500">SignUp</Link>
-          </p>
-        </div>
+            <p>
+              Dont have an account?
+              <Link to="/signup" className=" mx-2 text-lg text-blue-500">
+                SignUp
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import useUser from '../../hooks/useuser';
+import {firebase} from '../../firebase/firebase';
+import {getAuth,signOut} from 'firebase/auth';
 
 function Navbar() {
   const {user} = useUser();
@@ -24,7 +26,6 @@ function Navbar() {
         <div className=' flex gap-3'>
           <img src={photo} alt="" className=' w-6 h-6 rounded-full object-contain'/>
           <span className=' text-sm'>{name}</span>
-          <button className=' border-none text-xs bg-slate-600 px-2 text-white '>LogOut</button>
         </div>
     </div>
   )

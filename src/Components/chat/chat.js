@@ -1,13 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import useUser from "../../hooks/useuser";
 import Messages from './Messages';
 import Input from './input';
+import { ChatContext } from "../../context/chatContext";
 
 function Chat() {
+  const {data} = useContext(ChatContext);
+
   return (
     <div className="" style={{ flex: 2 }}>
       <div className=" h-12 p-2 text-slate-100 bg-slate-500 flex items-center justify-between">
-        <span>Jane</span>
+        <span>{data.user?.displayName}</span>
         <div className="flex gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"

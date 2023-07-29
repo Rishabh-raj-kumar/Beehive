@@ -4,7 +4,7 @@ import {firebase} from '../firebase/firebase';
 
 function useAuthListener() {
 
-    const [user,setUser] = useState(JSON.parse(localStorage.getItem('authUser')));
+    const [user,setUser] = useState('');
     useEffect(() =>{
         const listener = getAuth(firebase).onAuthStateChanged((authUser) =>{
             if(authUser){
@@ -26,4 +26,4 @@ function useAuthListener() {
   return { user }
 }
 
-export default useAuthListener
+export default useAuthListener;
