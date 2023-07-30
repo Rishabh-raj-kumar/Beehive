@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import userContext from "../../context/usercontext";
 import Firebasecontext from "../../context/firebase";
+import * as ROUTES from '../../constants/routes';
+import {Link} from 'react-router-dom';
 import {
   arrayRemove,
   arrayUnion,
@@ -60,7 +62,7 @@ export default function Actions({
               stroke={toggleLiked ? "#FF0000" : "#000"}
             />
           </svg>
-          <svg
+          <svg 
           onClick={handleFocus}
           width="40px"
           height="40px"

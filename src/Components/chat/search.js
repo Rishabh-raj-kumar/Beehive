@@ -89,13 +89,13 @@ const Search = ({CurrUser}) =>{
              onKeyDown={handleEvent}/>
         </div>
         {username.length > 0 ?
-        (<div id="box" className=" p-3 flex items-center gap-3 cursor-pointer hover:bg-slate-600 text-white"
+        (<>{user.image && <div id="box" className=" p-3 flex items-center gap-3 cursor-pointer hover:bg-slate-600 text-white"
         onClick={() => handleSelect(CurrUserId,CurrUserImage,CurrUserName)}>
-            <img src={user.image} className=" w-12 h-12 rounded-full object-cover"/>
-            <div className="">
+            {user.image && <img src={user.image} className=" w-12 h-12 rounded-full object-cover"/>}
+            {user.username && <div className="">
                 <span>{user.username}</span>
-            </div>
-        </div>)
+            </div>}
+        </div>}</>)
         :null}
     </div>
    )    

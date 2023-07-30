@@ -1,5 +1,5 @@
 /* disable eslint */
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Route, useNavigate } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
 import Firebasecontext from "../context/firebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -14,18 +14,24 @@ function Login() {
   const [error, setError] = useState("");
   const inValid = email === "" || password === "";
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 770px)" });
+  const [user,setUser] = useState('');
 
-  const user = JSON.parse(localStorage.getItem("authUser"));
+  useEffect(() =>{
+     const data = JSON.parse(localStorage.getItem("authUser"));
+     setUser(data);
+  })
+
   useEffect(() => {
     // console.log(user)
     try {
-      if (user) {
+      if (user.uid.length > 0) {
         navigate(`${ROUTES.DASHBOARD}`);
       }
     } catch (err) {
-      console.log(err);
+      navigate(`${ROUTES.LOGIN}`);
     }
   }, [user]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
 

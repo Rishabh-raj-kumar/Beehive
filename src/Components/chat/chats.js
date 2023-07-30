@@ -53,7 +53,7 @@ function Chats() {
   }
 
   return (
-    <div className="chats">
+    <div className="flex gap-1 md:block">
       { chats && Object.entries(chats)?.sort((a,b) => b[1].date - a[1].date).map((chat) => (
         //  console.log(chat);
         <div className=" p-3 flex items-center gap-3 cursor-pointer hover:bg-slate-600 text-white"
@@ -63,7 +63,7 @@ function Chats() {
             src={chat[1].userInfo?.photoUrl ? chat[1].userInfo.photoUrl : null}
             className=" w-12 h-12 rounded-full object-cover"
           />
-          <div className="">
+          <div className=" hidden md:block">
             <span>{chat[1].userInfo?.displayName ? chat[1].userInfo?.displayName : null }</span>
             <p className=" text-gray-400">{chat[1].lastMessage?.text ? chat[1].lastMessage?.text : null}</p>
           </div>

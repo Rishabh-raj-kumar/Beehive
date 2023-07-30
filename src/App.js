@@ -12,6 +12,7 @@ const Dashboard = lazy(() => import("./pages/dashboard"));
 const Profile = lazy(() => import("./pages/Profile"));
 const Post = lazy(() => import('./Components/post/Post'));
 const Chat = lazy(() => import("./pages/chat"));
+const Comment = lazy(() => import('./Components/comments/comment'));
 import UserIsLoggedIn from "./helpers/userLoggedIn";
 import { ChatContextProvider } from "./context/chatContext";
 
@@ -36,6 +37,7 @@ function App() {
             <Route path={ROUTES.profile} element={<Profile />} />
             <Route path={ROUTES.AddPost} element={<Post/>}/>
             <Route path={ROUTES.Chat} element={<Chat/>}/>
+            <Route path={ROUTES.Comments} element={<Comment/>}/>
             <Route path={"*"} element={<NotFound />} />
           </Routes>
         </Suspense>

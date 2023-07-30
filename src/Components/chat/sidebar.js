@@ -18,7 +18,7 @@ function Sidebar() {
   },[user])
   
   return (
-    <div className='flex-1 bg-slate-800 rounded-l-lg'>
+    <div className='md:flex-1 bg-slate-800 rounded-l-lg'>
       <Navbar/>
       <Search CurrUser={user} />
       <Chats />
