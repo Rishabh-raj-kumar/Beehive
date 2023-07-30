@@ -18,9 +18,9 @@ function Message({message,user}) {
          user[0].image : data.user.photoUrl}`} alt=''
          className=' w-10 h-10 object-cover rounded-full'/>
       </div>
-      <div className=' flex flex-col gap-2' style={{ maxWidth : '80%'}}>
-        <p className='para bg-slate-800 text-white px-3 py-2 max-w-max'>{message.text}</p>
-        {message.img  && <img src={message.img} alt="" className='w-1/2'/>}
+      <div className=' message grid gap-2 mt-2' style={{ maxWidth : '80%'}}>
+        <p className='para bg-slate-800 text-white px-3 py-2 md:max-w-xs'>{message.text}</p>
+        {message.img  && <img src={message.img} alt="" className=' w-1/2'/>}
       </div>
     </div>
   )

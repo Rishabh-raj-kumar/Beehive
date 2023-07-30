@@ -53,6 +53,7 @@ function Input() {
       });
     }
 
+    console.log(user[0].userId)
     await updateDoc(doc(db,"userChats",user[0].userId),{
       [data.chatId+'.lastMessage']:{
         text
@@ -70,6 +71,7 @@ function Input() {
     setText("");
     setImg(null);
   };
+
   return (
     <div className=" z-50 h-12 p-3 bg-slate-300 flex items-center justify-between">
       <input

@@ -83,8 +83,9 @@ const Search = ({CurrUser}) =>{
         <div className="p-2">
             <input type="text"
             placeholder="Search"
+             value={username}
              className=" bg-slate-800 border-none outline-none w-full text-white" 
-             onClick={e => setUsername(e.target.value)}
+             onChange={e => setUsername(e.target.value)}
              onKeyDown={handleEvent}/>
         </div>
         {username.length > 0 ?

@@ -5,7 +5,7 @@ import {firebase} from '../firebase/firebase';
 import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
 import * as ROUTES from "../constants/routes";
 import { doesUserExist } from "../services/firebase";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { addDoc, collection, doc, getFirestore, setDoc } from "firebase/firestore";
 import { faker } from '@faker-js/faker'
 import { useMediaQuery } from 'react-responsive'
 
@@ -44,11 +44,12 @@ function SignUp() {
           image : faker.image.avatar(),
           emailAddress : email.toLowerCase(),
           followers : [],
-          following : [id,"XnoBjJ4dpuMYItwEpdK40JAVgk43"],
+          following : [id,"yNfuZsL2k8SlOq9ebug1KR5JC9y2","VwTt0stCOGgJXzhHd6Z881n6gr83"],
           dateCreated : Date.now()
         })
 
-        await setDoc(collection(db,"userChats",id),{})
+  
+        await setDoc(doc(db,"userChats",id),{})
 
         navigate(`${ROUTES.DASHBOARD}`);
 
