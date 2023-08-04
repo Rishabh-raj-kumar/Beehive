@@ -4,5 +4,5 @@ export const Signup = '/signup';
 export const profile = '/p/:username';
 export const AddPost = '/addpost';
 export const Chat = '/chat';
-export const Comments = '/comments';
+export const Comments = '/c/:docId';
 export const NOTFOUND = '/notfound';

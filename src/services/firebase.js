@@ -248,3 +248,13 @@ export async function createPost(profileUserId, file, caption,userId) {
 
   return true;
 }
+
+export async function getPhotosByDocId(docId){
+  // console.log(docId)
+  const db = getFirestore(firebase);
+  const result = collection(db, "photos");
+  const docRef = doc(db, "cities", docId);
+  const res = await getDocs(docRef);
+
+  return res.data();
+}

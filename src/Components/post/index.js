@@ -30,6 +30,8 @@ function Post({ key, content}) {
     <Actions 
     content={content}
     docId={content.docId}
+    photoId={content.photoId}
+    userIds={content.userId}
     totalLikes={content.likes.length}
     likedPhoto={content.userLikedPhotO}
     handleFocus={handleFocus}/>

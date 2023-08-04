@@ -12,7 +12,7 @@ const Dashboard = lazy(() => import("./pages/dashboard"));
 const Profile = lazy(() => import("./pages/Profile"));
 const Post = lazy(() => import('./Components/post/Post'));
 const Chat = lazy(() => import("./pages/chat"));
-const Comment = lazy(() => import('./Components/comments/comment'));
+const Comment = lazy(() => import('./pages/Comments'));
 import UserIsLoggedIn from "./helpers/userLoggedIn";
 import { ChatContextProvider } from "./context/chatContext";
 

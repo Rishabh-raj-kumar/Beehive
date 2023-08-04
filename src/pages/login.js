@@ -14,23 +14,18 @@ function Login() {
   const [error, setError] = useState("");
   const inValid = email === "" || password === "";
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 770px)" });
-  const [user,setUser] = useState('');
-
-  useEffect(() =>{
-     const data = JSON.parse(localStorage.getItem("authUser"));
-     setUser(data);
-  })
 
   useEffect(() => {
     // console.log(user)
+    const data = JSON.parse(localStorage.getItem('authUser'));
     try {
-      if (user.uid.length > 0) {
+      if (data) {
         navigate(`${ROUTES.DASHBOARD}`);
       }
     } catch (err) {
       navigate(`${ROUTES.LOGIN}`);
     }
-  }, [user]);
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
