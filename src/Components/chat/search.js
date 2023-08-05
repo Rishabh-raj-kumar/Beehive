@@ -55,7 +55,7 @@ const Search = ({ CurrUser }) => {
   };
 
   const handleSelect = async (CurrUserId, CurrUserImage, CurrUserName) => {
-    console.log(CurrUserId, CurrUserImage, CurrUserName);
+    // console.log(CurrUserId, CurrUserImage, CurrUserName);
     //check wether the chats exist in group or not.. if not create new.
     const combineId =
       CurrUserId > user.userId
@@ -66,7 +66,7 @@ const Search = ({ CurrUser }) => {
     if (!res.exists()) {
       //create a chat in chat collection.
       await setDoc(doc(db, "chats", combineId), { messages: [] });
-      console.log(CurrUserId, user.userId);
+      // console.log(CurrUserId, user.userId);
 
       await updateDoc(doc(db, "userChats", CurrUserId), {
         [combineId + ".userInfo"]: {
@@ -121,7 +121,7 @@ const Search = ({ CurrUser }) => {
       </div>
       {username.length > 0 ? (
         <>
-          {user.image && (
+          {user && user.image && (
             <div
               id="box"
               className=" p-3 flex items-center gap-3 cursor-pointer hover:bg-slate-600 text-white"
