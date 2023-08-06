@@ -282,8 +282,6 @@ export async function createPost(profileUserId, file, caption,userId) {
     likes : []
   });
 
-  alert("Post Created");
-
   return true;
 }
 

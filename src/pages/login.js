@@ -5,6 +5,7 @@ import Firebasecontext from "../context/firebase";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import * as ROUTES from "../constants/routes";
 import { useMediaQuery } from "react-responsive";
+import Loader from "../Components/Loader";
 
 function Login() {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading,setLoading] = useState(false);
   const inValid = email === "" || password === "";
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 770px)" });
 
@@ -31,10 +33,11 @@ function Login() {
     e.preventDefault();
 
     try {
+      setLoading(true);
       const auth = getAuth();
       const resp = await signInWithEmailAndPassword(auth, email, password);
       if (resp) {
-        alert("Logined success");
+        setLoading(false)
         navigate(`${ROUTES.DASHBOARD}`);
       }
     } catch (error) {
@@ -51,7 +54,9 @@ function Login() {
 
   return (
     <>
-      <div className=" container mx-auto max-w-screen-md h-screen flex flex-wrap md:flex-nowrap items-center">
+      { loading ? (<>
+      <Loader/>
+      </>) : (<div className=" container mx-auto max-w-screen-md h-screen flex flex-wrap md:flex-nowrap items-center">
         <div className="w-full md:w-3/5 flex items-center justify-center m-3">
           {!isTabletOrMobile && (
             <img
@@ -105,7 +110,7 @@ function Login() {
             </p>
           </div>
         </div>
-      </div>
+      </div>)}
     </>
   );
 }

@@ -5,6 +5,7 @@ import { createPost } from "../../services/firebase";
 import { Navigate } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 import { useNavigate } from "react-router-dom";
+import Loader from "../Loader";
 
 function Post() {
   const { user } = useUser();
@@ -12,6 +13,7 @@ function Post() {
   const [caption, setCaption] = useState("");
   const navigate = useNavigate();
   const [CurrUser,setCurrUser] =  useState(null);
+  const [loading,setLoading] = useState(false);
 
 
   useEffect(() =>{
@@ -25,17 +27,22 @@ function Post() {
   },[user])
 
   const handleUpload = async (e) => {
+    setLoading(true)
     let res = await createPost(
       user[0].userId,
       image,
       caption,
       user[0].userId
     ).then(() => {
+      setLoading(false);
       navigate(ROUTES.DASHBOARD);
     });
   };
 
   return (
+    <>{loading ? (<>
+    <Loader/>
+    </>) :(
     <>
       <Header />
       <div className="w-full h-full grid place-items-center">
@@ -122,6 +129,7 @@ function Post() {
           </div>
         </div>
       </div>
+    </>)}
     </>
   );
 }
