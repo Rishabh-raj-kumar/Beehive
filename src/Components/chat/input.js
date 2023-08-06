@@ -22,6 +22,7 @@ function Input() {
   const { data } = useContext(ChatContext);
 
   const handleChange = async () => {
+    try{
     if (img) {
       const storage = getStorage();
       const storageRef = ref(storage, uuid());
@@ -67,8 +68,10 @@ function Input() {
       },
       [data.chatId+'.date']: serverTimestamp()
     });
-
-    setText("");
+  }catch(err){
+    console.log(err);
+  }
+  setText("");
     setImg(null);
   };
 

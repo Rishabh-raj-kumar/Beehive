@@ -5,7 +5,9 @@ function UserPresent({user}) {
 
     useEffect(() =>{
        try{
-         setUser(user[0].following);
+        if(user[0].suggestions){
+         setUser(user[0].suggestions);
+        }
        }catch(err){
         console.log(err)
        }
@@ -15,6 +17,7 @@ function UserPresent({user}) {
         Users.map((x) =>(
             <div>
                 <UserSuggested
+                CurrUser={user}
                   userId={x}
                 />
             </div>

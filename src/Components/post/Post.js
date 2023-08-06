@@ -31,8 +31,25 @@ function Post() {
     <>
       <Header />
       <div className="w-full h-full grid place-items-center">
-        <div className=" mt-10 flex flex-col gap-3">
-          <div className=" w-full h-48 border-2 bg-gray-200 grid place-items-center">
+        <div className=" bg-white w-full md:w-3/4 mt-10 flex flex-col gap-3">
+          <div className="flex justify-between p-3">
+          <div className="flex h-9 items-center gap-2 ml-3 p-2">
+            <img src={user[0].image} alt="user"
+            className="w-9 h-9 rounded-full"/>
+            <p>{user[0].username}</p>
+          </div>
+          <button className="bg-blue-600 text-white px-4 rounded" onClick={handleUpload}>
+              Post
+            </button>
+          </div>
+          <div className=" w-full h-48 border-2 bg-white grid place-items-center">
+          <div className="w-full flex flex-wrap items-center gap-4 justify-center">
+            <input
+              placeholder="What's On Your Mind?"
+              className="flex-1 p-3 text-md outline-none"
+              onChange={(e) => setCaption(e.target.value)}
+            />
+          </div>
             <img className="w-20 h-20" id="preview"/>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -65,16 +82,6 @@ function Post() {
                 previewEle.src = url;
               }}
             />
-          </div>
-          <div className="w-full flex flex-wrap items-center gap-4 justify-center">
-            <input
-              placeholder="Caption"
-              className="flex-1 p-3 text-md border-2 outline-none"
-              onChange={(e) => setCaption(e.target.value)}
-            />
-            <button className="bg-blue-500 p-2 rounded" onClick={handleUpload}>
-              Create
-            </button>
           </div>
         </div>
       </div>

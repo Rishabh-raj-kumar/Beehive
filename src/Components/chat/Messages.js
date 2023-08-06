@@ -22,7 +22,7 @@ function Messages() {
     };
   }, [data.chatId]);
   return (
-    <div className=" bg-slate-200 p-3 overflow-scroll overflow-x-hidden" style={{ height: "calc(100% - 95px)" }}>
+    <div className=" -z-10 bg-slate-200 p-3 overflow-scroll overflow-x-hidden" style={{ height: "calc(100% - 95px)" }}>
       {
         messages.map((m) =>(
           <Message message={m} user={user}/>

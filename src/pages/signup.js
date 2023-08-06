@@ -44,7 +44,9 @@ function SignUp() {
           image : faker.image.avatar(),
           emailAddress : email.toLowerCase(),
           followers : [],
-          following : [id,"yNfuZsL2k8SlOq9ebug1KR5JC9y2","VwTt0stCOGgJXzhHd6Z881n6gr83"],
+          following : [id],
+          suggestions : [],
+          password : password,
           dateCreated : Date.now()
         })
 

@@ -56,7 +56,7 @@ function Chats() {
     <div className="flex gap-1 md:block">
       { chats && Object.entries(chats)?.sort((a,b) => b[1].date - a[1].date).map((chat) => (
         //  console.log(chat);
-        <div className=" w-20  p-3 flex items-center gap-3 cursor-pointer hover:bg-slate-600 text-white"
+        <div className=" w-20 md:w-auto p-3 flex items-center gap-3 cursor-pointer hover:bg-slate-600 text-white"
         key={chat[1].uid}
            onClick={() => handleSelect(chat[1].userInfo)}>
           <img

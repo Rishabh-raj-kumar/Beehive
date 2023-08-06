@@ -81,7 +81,7 @@ function Chat() {
                       d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                  <p>Click on User to chat with them.</p>
+                  <p>If you had followed user then , Click on User to chat with them.</p>
                 </div>
                 <p>
                   Note : if no user is showing then go to search and type there
@@ -102,8 +102,10 @@ function Chat() {
                       d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"
                     />
                   </svg>
-                  <p>Dont know any user ?</p>
-                  <p>try search (author)</p>
+                  <div>
+                  <p>Dont know what to do ?</p>
+                  <p>Go to home and follow some Users.</p>
+                  </div>
                 </div>
               </div>
             </div>

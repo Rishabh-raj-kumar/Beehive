@@ -88,6 +88,7 @@ export async function getSuggestedProfiles(userId, following) {
   return user;
 }
 
+
 export async function updateLoggedInUserFollowing(
   loggedInUserDocId,
   profileId,
@@ -99,6 +100,9 @@ export async function updateLoggedInUserFollowing(
 
   const res = await updateDoc(docs, {
     following: isFollowingProfile
+      ? arrayRemove(`${profileId}`)
+      : arrayUnion(`${profileId}`),
+      suggestions: isFollowingProfile
       ? arrayRemove(`${profileId}`)
       : arrayUnion(`${profileId}`),
   });
@@ -118,6 +122,23 @@ export async function updateFolllowedUserFollowers(
     followers: isFollowingProfile
       ? arrayRemove(loggedInUserDocId)
       : arrayUnion(loggedInUserDocId),
+    suggestions: isFollowingProfile
+      ? arrayRemove(loggedInUserDocId)
+      : arrayUnion(loggedInUserDocId),
+  });
+
+  return res;
+}
+
+export async function updateSuggestedFollowers(
+  profileId,
+  CurrUserDocId,
+) {
+  const db = getFirestore(firebase);
+  const docs = doc(db, "users",CurrUserDocId);
+
+  const res = await updateDoc(docs, {
+    suggestions : arrayRemove(`${profileId}`)
   });
 
   return res;

@@ -14,6 +14,7 @@ import {
   where,
 } from "firebase/firestore";
 import useUser from "../../hooks/useuser";
+import { updateSuggestedFollowers } from "../../services/firebase";
 
 const Search = ({ CurrUser }) => {
   const [username, setUsername] = useState("");
@@ -87,6 +88,9 @@ const Search = ({ CurrUser }) => {
         },
         [combineId + ".date"]: serverTimestamp(),
       });
+      await updateSuggestedFollowers(user.userId,CurrUserId).then(
+        'suggestiion removed'
+      );
     }
 
     setUser(null);
@@ -94,7 +98,7 @@ const Search = ({ CurrUser }) => {
   };
 
   return (
-    <div className=" border-b-2 border-gray-400">
+    <div className=" z-30 border-b-2 border-gray-400">
       <div className="p-2 flex">
         <input
           type="text"
@@ -119,7 +123,7 @@ const Search = ({ CurrUser }) => {
           />
         </svg>
       </div>
-      {username.length > 0 ? (
+      {username.length > 0 && username !== CurrUser[0].username ? (
         <>
           {user && user.image && (
             <div
