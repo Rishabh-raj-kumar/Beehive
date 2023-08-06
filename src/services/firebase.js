@@ -69,6 +69,23 @@ export async function getUserByUserId(uid) {
   return user;
 }
 
+export async function tellMeYourself(profileDocId,userId,image,description){
+  const db = getFirestore(firebase);
+  const docs = doc(db, "users", profileDocId);
+
+  const filref = ref(storage, userId + ".png");
+  const snap = await uploadBytes(filref, image);
+  const photoUrl = await getDownloadURL(filref);
+
+  const res = await updateDoc(docs, {
+    image: photoUrl,
+    description : description
+  });
+  alert("file uploaded");
+
+  return true;
+}
+
 export async function getSuggestedProfiles(userId, following) {
   const db = getFirestore(firebase);
   const result = collection(db, "users");

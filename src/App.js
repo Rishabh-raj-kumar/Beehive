@@ -13,6 +13,8 @@ const Profile = lazy(() => import("./pages/Profile"));
 const Post = lazy(() => import('./Components/post/Post'));
 const Chat = lazy(() => import("./pages/chat"));
 const Comment = lazy(() => import('./pages/Comments'));
+const Verify = lazy(() => import('./pages/Verify'));
+const WalkThrough = lazy(() => import('./pages/WalkThrough'));
 import UserIsLoggedIn from "./helpers/userLoggedIn";
 import { ChatContextProvider } from "./context/chatContext";
 
@@ -34,6 +36,8 @@ function App() {
             />
             <Route path={ROUTES.LOGIN} element={<Login />} />
             <Route path={ROUTES.Signup} element={<Signup />} />
+            <Route path={ROUTES.Verify} element={<Verify />} />
+            <Route path={ROUTES.WalkThrough} element={<WalkThrough />} />
             <Route path={ROUTES.profile} element={<Profile />} />
             <Route path={ROUTES.AddPost} element={<Post/>}/>
             <Route path={ROUTES.Chat} element={<Chat/>}/>

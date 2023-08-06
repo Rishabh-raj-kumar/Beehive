@@ -2,7 +2,7 @@
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import React, { useContext, useEffect, useState } from "react";
 import {firebase} from '../firebase/firebase';
-import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, sendEmailVerification, updateProfile } from "firebase/auth";
 import * as ROUTES from "../constants/routes";
 import { doesUserExist } from "../services/firebase";
 import { addDoc, collection, doc, getFirestore, setDoc } from "firebase/firestore";
@@ -32,6 +32,8 @@ function SignUp() {
         await updateProfile(createdUserresult.user,{
           displayName : username
         })
+        await sendEmailVerification(createdUserresult.user);
+        console.log(createdUserresult.user.emailVerified);
 
         const id = createdUserresult.user.uid;
 
@@ -44,8 +46,9 @@ function SignUp() {
           image : faker.image.avatar(),
           emailAddress : email.toLowerCase(),
           followers : [],
-          following : [id],
+          following : [id,'jZBVejx2x8OdoLl6SXBjXkXB7KD2'],
           suggestions : [],
+          description : '',
           password : password,
           dateCreated : Date.now()
         })
@@ -53,7 +56,7 @@ function SignUp() {
   
         await setDoc(doc(db,"userChats",id),{})
 
-        navigate(`${ROUTES.DASHBOARD}`);
+        navigate(`${ROUTES.WalkThrough}`);
 
       } catch (error) {
         setEmail("");
