@@ -48,26 +48,27 @@ function Chats() {
     }
   }, [CurrUserId, CurrUserName]);
 
-  const handleSelect = (u) =>{
+  const handleSelect = (e,u) =>{
        dispatch({ type : "CHANGE_USER",payload :u })
   }
 
   return (
-    <div className="flex gap-1 md:block">
+    <div className=" box flex gap-1 md:block">
       { chats && Object.entries(chats)?.sort((a,b) => b[1].date - a[1].date).map((chat) => (
-        //  console.log(chat);
-        <div className=" w-20 md:w-auto p-3 flex items-center gap-3 cursor-pointer hover:bg-slate-600 text-white"
+         <>
+        <div className=" active w-20 md:w-auto p-3 flex items-center gap-3 cursor-pointer hover:bg-slate-600 text-white"
         key={chat[1].uid}
-           onClick={() => handleSelect(chat[1].userInfo)}>
+           onClick={(e) => handleSelect(e,chat[1].userInfo)}>
           <img
             src={chat[1].userInfo?.photoUrl ? chat[1].userInfo.photoUrl : null}
             className=" w-12 h-12 rounded-full object-cover"
           />
           <div className=" hidden md:block">
-            <span>{chat[1].userInfo?.displayName ? chat[1].userInfo?.displayName : null }</span>
-            <p className=" text-gray-400">{chat[1].lastMessage?.text ? chat[1].lastMessage?.text : null}</p>
+            <span className="bg-transparent">{chat[1].userInfo?.displayName ? chat[1].userInfo?.displayName : null }</span>
+            <p className=" text-gray-400 bg-transparent">{chat[1].lastMessage?.text ? chat[1].lastMessage?.text : 'image'}</p>
           </div>
         </div>
+        </>
       ))}
     </div>
   );

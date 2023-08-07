@@ -14,6 +14,7 @@ function Header() {
   const { user } = useContext(userContext);
   const [image, setImage] = useState(null);
   const [name, setName] = useState("");
+  const [followedUserImg,setfollowedImg] = useState(null);
 
   useEffect(() => {
     try {
@@ -73,6 +74,14 @@ function Header() {
                   />
                 </svg>
               </Link>
+              <Link to={ROUTES.status}>
+                <img
+                  width="32"
+                  height="32"
+                  src="https://img.icons8.com/stickers/100/plus-key.png"
+                  alt="plus-key"
+                />
+              </Link>
               <Link to={ROUTES.Chat}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +100,7 @@ function Header() {
               </Link>
               <Link to={`/p/${name}`}>
                 <img
-                  className=" w-10 h-10 rounded-full"
+                  className=" w-10 h-10 rounded-full object-cover"
                   src={image}
                   alt="profileImage"
                 />

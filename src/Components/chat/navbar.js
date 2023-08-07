@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import useUser from '../../hooks/useuser';
-import {firebase} from '../../firebase/firebase';
-import {getAuth,signOut} from 'firebase/auth';
+import * as ROUTES from '../../constants/routes';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   const {user} = useUser();
@@ -22,7 +22,7 @@ function Navbar() {
 
   return (
     <div className=' z-30 h-12 p-3 flex items-center justify-between bg-slate-700 text-white'>
-      <div className=' font-bold'>BeeHive</div>
+      <Link to={ROUTES.DASHBOARD}><div className=' font-bold'>BeeHive</div></Link>
         <div className=' flex gap-3'>
           <img src={photo} alt="" className=' w-6 h-6 rounded-full object-contain'/>
           <span className=' text-sm'>{name}</span>

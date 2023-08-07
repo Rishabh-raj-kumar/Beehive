@@ -1,18 +1,20 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { getUserByUserName, getUserPhotosByUserName } from "../../services/firebase";
 import Header from "./header";
 import Photos from "./photo";
 import useUser from '../../hooks/useuser';
+import Loader from "../Loader";
 
 export default function Profile({ username }) {
   const {user} =useUser();
   const reducer = (state, newState) => ({ ...state, ...newState });
+  const [loading,setLoading] = useState(false);
   const initialState = {
     profile: {},
     photosCollection: [],
     followerCount: 0,
   };
-  const [{ profile, photosCollection, followerCount }, dispatch] = useReducer(
+  const [{ profile, photosCollection, followerCount,profileDesc,ImportPers  }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -24,7 +26,8 @@ export default function Profile({ username }) {
         const photo = await getUserPhotosByUserName(username);
         // console.log(photo);
         if(user){
-        dispatch({ profile : user, photosCollection : photo, followerCount : user.following.length});
+          // console.log(user.ImportPers)
+        dispatch({ profile : user, photosCollection : photo, followerCount : user.following.length,profileDesc : user.description,ImportPers : user.ImportPers});
         }
       }catch(err){
         console.log(err);
@@ -33,15 +36,21 @@ export default function Profile({ username }) {
     getProfileAndPhotoInfo();
   },[])
   return (<>
-  {/* {console.log(profile)} */}
+  {loading ? (<>
+    <Loader/>
+    </>) : (<>
   <Header photosCount={photosCollection ? photosCollection.length : 0}
   profile={profile}
   followerCount={followerCount}
   setFollowerCount={dispatch}
+  profileDesc={profileDesc }
   username={username}
-  user={user}/>
+  ImportPers={ImportPers}
+  user={user}
+  setLoader={setLoading}/>
 
    <hr className=" mt-3 border-1 border-gray-400"/>
   <Photos photo={photosCollection}/>
+  </>)}
   </>)
 }

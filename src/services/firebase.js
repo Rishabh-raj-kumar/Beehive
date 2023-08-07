@@ -17,7 +17,7 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
+import { getDownloadURL, getStorage, ref, uploadBytes, uploadBytesResumable } from "firebase/storage";
 
 const storage = getStorage(firebase);
 //uploading user profile photo...
@@ -293,4 +293,71 @@ export async function getPhotosByDocId(docId){
   const res = await getDocs(docRef);
 
   return res.data();
+}
+
+export async function createStory(profileUserId, video,setVideoUrl,videoUrl) {
+  const db = getFirestore(firebase);
+  const docs = collection(db, "status");
+
+  const str = "dasdkkvwkscksvakcvssvxvovjasxjasvjasvxs";
+  let vals = "";
+  for (let i = 0; i < 16; i++) {
+    vals += str[Math.floor(Math.random() * 7)];
+  }
+//   console.log(vals);
+
+  const filref = ref(storage, `status/${vals+'.mp4'}`);
+
+  const snap = uploadBytesResumable(filref, video);
+  let photoUrl = "";
+  snap.on('state_changed',(snapshot) =>{
+    let progress = (snapshot.bytesTransferred/ snapshot.totalBytes) * 100
+    progress = Math.trunc(progress);
+    // console.log(progress)
+  },(error)=>{
+    console.log(error)
+  },() =>{
+    getDownloadURL(snap.snapshot.ref).then(downUrl =>{
+      setVideoUrl(downUrl);
+       addDoc(docs, {
+        userId: profileUserId,
+        video : downUrl
+      }).then(() =>{
+        return true;
+      });
+    });
+  })
+}
+
+export async function getUserStoryByUserId(userId) {
+  const db = getFirestore(firebase);
+  const result = collection(db, "status");
+  const q = query(result, where("userId", "==",userId));
+  const res = await getDocs(q);
+
+  return res.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
+}
+
+export async function getStory(userId, following) {
+  const db = getFirestore(firebase);
+  const col = collection(db, "status");
+  const q = query(col, where("userId", "in", following));
+  const getDOcs = await getDocs(q);
+
+  let userStory = getDOcs.docs.map((doc) => ({
+    ...doc.data(),
+    docId: doc.id,
+  }));
+
+  const StoryWithUser = await Promise.all(
+    userStory.map(async (photo) => {
+      const user = await getUserByUserId(photo.userId);
+      return {user};
+    })
+  );
+  
+  return {StoryWithUser,userStory};
 }

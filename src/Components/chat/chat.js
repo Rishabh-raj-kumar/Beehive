@@ -8,7 +8,7 @@ function Chat() {
   const { data } = useContext(ChatContext);
 
   return (
-    <div className="" style={{ flex: 2 }}>
+    <div className=" overflow-scroll md:overflow-hidden" style={{ flex: 2, zIndex : 0 }}>
       <div className=" h-12 p-2 text-slate-100 bg-slate-500 flex items-center justify-between">
         <span>{data.user?.displayName}</span>
         <div className="flex gap-2">

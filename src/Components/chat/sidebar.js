@@ -22,7 +22,7 @@ function Sidebar() {
     <div className=' z-40 md:flex-1 overflow-x-scroll bg-slate-800 rounded-l-lg md:overflow-scroll'>
       <Navbar/>
       <Search CurrUser={user} />
-      <div className='flex flex-1 md:flex-col overflow-scroll'>
+      <div className=' z-50 relative flex flex-1 md:flex-col overflow-scroll'>
       <UserPresent user={user}/>
       <Chats />
       </div>

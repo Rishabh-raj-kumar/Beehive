@@ -35,7 +35,7 @@ function Input() {
              await updateDoc(doc(db,"chats",data.chatId),{
               messages: arrayUnion({
                 id: uuid(),
-                text,
+                text : text.length > 0 ? text : null,
                 senderId: user[0].userId,
                 date: Timestamp.now(),
                 img : URL
@@ -43,7 +43,11 @@ function Input() {
              })
         })
       })
-    } else {
+
+      setText("");
+      setImg(null);
+    } 
+    else if(!text.length < 1){
       await updateDoc(doc(db, "chats", data.chatId), {
         messages: arrayUnion({
           id: uuid(),
@@ -52,6 +56,8 @@ function Input() {
           date: Timestamp.now(),
         }),
       });
+    } else{
+       return;
     }
 
     console.log(user[0].userId)
@@ -71,8 +77,9 @@ function Input() {
   }catch(err){
     console.log(err);
   }
+
   setText("");
-    setImg(null);
+  setImg(null);
   };
 
   return (
@@ -80,7 +87,7 @@ function Input() {
       <input
         type="text"
         placeholder="Enter the message..."
-        className=" w-full border-none outline-none text-lg bg-slate-300 text-slate-700 placeholder:text-slate-700"
+        className=" w-full h-10 bg-white p-2 rounded-xl shadow-md  border-none outline-none text-lg text-slate-700 placeholder:text-slate-700"
         onChange={(e) => setText(e.target.value)}
         value={text}
       />
@@ -104,6 +111,7 @@ function Input() {
           type="file"
           className="hidden"
           id="file"
+          accept="image/*" multiple
           onChange={(e) => setImg(e.target.files[0])}
         />
         <label htmlFor="file">

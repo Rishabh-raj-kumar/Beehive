@@ -15,7 +15,7 @@ function usePhotos() {
             if(following.length > 0){
                 followedUserPhoto = await getPhotos(userId,following);
             }
-
+             console.log(followedUserPhoto)
             //re arrange photos to the newest accordingly date created
             followedUserPhoto.sort((a,b) => b.dateCreated - a.dateCreated);
             setPhotos(followedUserPhoto);

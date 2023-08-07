@@ -49,6 +49,7 @@ function SignUp() {
           following : [id,'jZBVejx2x8OdoLl6SXBjXkXB7KD2'],
           suggestions : [],
           description : '',
+          ImportPers : false,
           password : password,
           dateCreated : Date.now()
         })

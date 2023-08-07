@@ -67,3 +67,14 @@ b{
     font-weight: 800;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+.choosen{
+    background: rgb(242, 238, 238);
+    color: black;
+}
+.--status_user{
+    outline: 2px solid rgb(0, 215, 0);
+    outline-offset: 3px;
+}
+.load{
+    height : calc(100vh - 20px);
+}

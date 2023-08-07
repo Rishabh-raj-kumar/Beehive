@@ -65,20 +65,18 @@ function Post() {
           </div>
           <div className=" relative w-full  border-2 bg-white grid place-items-center">
             <div className="w-full flex flex-wrap items-center gap-4 justify-center">
-              <input
+              <textarea
                 placeholder="What's On Your Mind?"
-                className="flex-1 p-3 text-md outline-none"
+                className=" w-3/4 flex-1 p-3 text-md outline-none"
                 onChange={(e) => setCaption(e.target.value)}
               />
-            </div>
-             <img className=" w-full h-52 object-cover p-2" id="preview" />
-            <svg
+               <svg
               width="30px"
               height="30px"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className=" absolute top-5 right-4"
+              className=" mr-2"
               onClick={() => {
                 let inp = document.getElementById("inp");
                 inp.click();
@@ -113,6 +111,8 @@ function Post() {
                 stroke-linejoin="round"
               />
             </svg>
+            </div>
+             <img className=" w-full h-52 object-cover p-2" id="preview" />
             <input
               type="file"
               accept="image/*"
