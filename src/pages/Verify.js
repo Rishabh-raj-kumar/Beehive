@@ -8,7 +8,8 @@ function Verify() {
         <div className=' bg-white shadow-xl p-4 rounded'>
         <p className=' font-bold text-lg'>Wishing You a happy Journey 😊❤️.</p>
         <p>Before Proceeding Please Verify you email to confirm it's You.</p>
-        <p className=' mt-3'><span className=' font-bold text-lg'>Note : </span> Please don't go back before verfiying.</p>
+        <p className=' mt-3'><span className=' font-bold text-lg'>Note : </span> Please don't go back before verfiying.
+         <p>Because Your User id has been created, we are just confirming its you.</p></p>
          <Link to={`${ROUTES.DASHBOARD}`}>
          <button className=' p-2 bg-blue-700 text-white'>Back</button>
          </Link>

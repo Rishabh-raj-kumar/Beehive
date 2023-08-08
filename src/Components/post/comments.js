@@ -10,9 +10,9 @@ export default function Comments({docId, comments : allComments, posted, comment
          <div className="p-4 pt-1">
             {comments.length >= 3 && (
                 <Link to={`/c/${docId}`}>
-                <p className=" text-sm mb-1 cursor-pointer">
+                <pre className=" text-sm mb-1 cursor-pointer">
                     view all {comments.length} comments.
-                </p>
+                </pre>
                 </Link>
             )}
             {comments.slice(0,3).map(item => (

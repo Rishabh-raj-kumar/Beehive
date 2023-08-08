@@ -23,12 +23,12 @@ function Dashboard() {
       <div className={`relative ${play && 'overflow-hidden'} bg-black`}>
         {isMobile && <Header />}
         <div
-          className={`grid ${!isTablet && !isMobile && `grid-cols-4`} ${
+          className={`grid ${!isTablet && !isMobile && `grid-cols-3`} ${
             isTablet && isMobile && `grid-cols-1`
-          } ${isTablet && !isMobile && `grid-cols-2`} gap-3 justify-between mx-auto max-w-screen-lg`}
+          } ${isTablet && !isMobile && `grid-cols-2`} gap-3 justify-between mx-auto`}
         >
           <Navigation/>
-          <div className={`col-span-2 ${isTablet && `col-span-1`}`}>
+          <div className={` col-span-1 mr-3`}>
             <Story setPlay={setPlay} setVideo={setVideo} setfollowedImg={setfollowedImg} />
             <Timeline photos={photos} />
           </div>
