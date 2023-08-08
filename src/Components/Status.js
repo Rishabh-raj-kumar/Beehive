@@ -35,6 +35,9 @@ function Story({ setPlay, setVideo, setfollowedImg }) {
               setVideo(x.video);
               setfollowedImg(followedUser[index].user[0].image)
             }}
+            style={{backgroundColor: '#6b0f1a',
+            backgroundImage: 'linear-gradient(315deg, #6b0f1a 0%, #b91372 74%)'
+            }}
             key={x.userId}
           >
             <div className="--status_user bg-gray-300 w-10 h-10 rounded-full absolute left-2 top-2 overflow-hidden">

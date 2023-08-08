@@ -14,25 +14,26 @@ function Dashboard() {
   const [play, setPlay] = useState(false);
   const [video,setVideo] = useState(null);
   const [followedUserImg,setfollowedImg] = useState(null);
+  const isTablet = useMediaQuery({ maxWidth: 1024 });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 770px)" });
-
+  const isMobile = useMediaQuery({ maxWidth: 500 });
 
   return (
     <>
-      <div className={`relative ${play && 'overflow-hidden'} bg-zinc-950`}>
-        <Header />
+      <div className={`relative ${play && 'overflow-hidden'} bg-black`}>
+        {isMobile && <Header />}
         <div
-          className={`grid ${!isTabletOrMobile && `grid-cols-4`} ${
-            isTabletOrMobile && `grid-cols-1`
-          } gap-3 justify-between mx-auto max-w-screen-lg`}
+          className={`grid ${!isTablet && !isMobile && `grid-cols-4`} ${
+            isTablet && isMobile && `grid-cols-1`
+          } ${isTablet && !isMobile && `grid-cols-2`} gap-3 justify-between mx-auto max-w-screen-lg`}
         >
           <Navigation/>
-          <div className="col-span-2">
+          <div className={`col-span-2 ${isTablet && `col-span-1`}`}>
             <Story setPlay={setPlay} setVideo={setVideo} setfollowedImg={setfollowedImg} />
             <Timeline photos={photos} />
           </div>
           {!isTabletOrMobile && <Sidebar photos={photos} />}
-          {isTabletOrMobile && <Footer />}
+          {isMobile && <Footer />}
         </div>
         {/** we will be playing status */}
         {play && <Post setPlay={setPlay} play={play} followedUserImg={followedUserImg}

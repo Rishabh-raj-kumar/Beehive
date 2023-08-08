@@ -11,6 +11,7 @@ function useStory() {
     useEffect(() =>{
         const {uid : userId =''} = user;
         async function getTimelinePhotos(){
+            try{
             const [{ following }] = await getUserByUserId(userId);
             if(following.length > 0){
             // console.log(following)
@@ -21,11 +22,13 @@ function useStory() {
             setStory(userStory.userStory);
             setUser(userStory.StoryWithUser)
             }
-
+        }catch(err){
+            console.log(err);
+        }
         }
 
         getTimelinePhotos();
-    },[])
+    },[user])
   return {story,followedUser};
 }
 
