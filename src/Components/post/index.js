@@ -24,7 +24,8 @@ function Post({ key, content}) {
   })
 
   return (
-    <div className='mx-3 rounded-md bg-white mb-8 col-span-4 border mt-2 shadow'>
+    <div className='mx-3 rounded-md bg-white mb-8 col-span-4 border mt-2 shadow'
+    style={{ boxShadow : '0px 0px 12px 0px rgba(255,255,255,0.5)'}}>
     <Header username={content.username} img={profileImage}/>
     <img src={content.imageSrc}/>
     <Actions 

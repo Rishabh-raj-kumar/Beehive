@@ -15,7 +15,7 @@ function useStory() {
             if(following.length > 0){
             // console.log(following)
             const userStory = await getStory(userId,following);
-            console.log(userStory)
+            // console.log(userStory)
             //re arrange photos to the newest accordingly date created
             userStory.userStory.sort((a,b) => b.dateCreated - a.dateCreated);
             setStory(userStory.userStory);

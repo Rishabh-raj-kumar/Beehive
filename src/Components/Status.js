@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getUserByUserId } from "../services/firebase";
 import useStory from "../hooks/useStory";
+import Skeleton from "react-loading-skeleton";
 
 function Story({ setPlay, setVideo, setfollowedImg }) {
   const { story,followedUser } = useStory();
@@ -9,23 +9,25 @@ function Story({ setPlay, setVideo, setfollowedImg }) {
 
   useEffect(() =>{
           try{
-            if(followedUser){
-              console.log(followedUser[0].user[0].image)
+            if(story){
+              // console.log(followedUser[0].user[0].image)
               // setUserImg(followedUser[0].image)
+              setUserStory(story);
             }
           }catch(err){
             console.log(err);
           }
-  },[followedUser])
+  },[story])
 
   return (
+    <>
+    {story ? (
     <div className=" status-container flex  w-full md:w-full overflow-hidden p-5">
-      {/* {console.log(typeof userStory)} */}
-      {story ? (
-        story.map((x,index) => (
+      {console.log(userStory)}
+        {story.map((x,index) => (
         <>
         {/* {console.log(followedUser[index].user[0].image)} */}
-        <div className=" mt-2 flex gap-2 overflow-y-scroll">
+        {x.video ? (<div className=" mt-2 flex gap-2 overflow-y-scroll">
           <div
             className="ml-2 relative flex-shrink-0 w-24 h-32 bg-gray-100 rounded-xl"
             onClick={() => {
@@ -49,10 +51,17 @@ function Story({ setPlay, setVideo, setfollowedImg }) {
               )}
             </div>
           </div>
-        </div>
+        </div>) : (
+          <Skeleton count={1} width={98} height={128}/>
+        )}
         </>
-      ))) : null}
-    </div>
+      ))}
+    </div>) : (
+      <>
+      <Skeleton count={1} width={98} height={128}/>
+      </>
+    )}
+    </>
   );
 }
 

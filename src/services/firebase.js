@@ -313,7 +313,9 @@ export async function createStory(profileUserId, video,setVideoUrl,videoUrl) {
   snap.on('state_changed',(snapshot) =>{
     let progress = (snapshot.bytesTransferred/ snapshot.totalBytes) * 100
     progress = Math.trunc(progress);
-    // console.log(progress)
+    if(progress === 100){
+      return true;
+    }
   },(error)=>{
     console.log(error)
   },() =>{
@@ -321,12 +323,13 @@ export async function createStory(profileUserId, video,setVideoUrl,videoUrl) {
       setVideoUrl(downUrl);
        addDoc(docs, {
         userId: profileUserId,
-        video : downUrl
-      }).then(() =>{
-        return true;
+        video : downUrl,
+        createdAt : serverTimestamp(),
       });
     });
   })
+
+  return true;
 }
 
 export async function getUserStoryByUserId(userId) {

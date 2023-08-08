@@ -3,7 +3,6 @@
 body{
     min-height: 100vh;
     position: relative;
-    background: hsl(226, 52%, 94%);
 }
 ::-webkit-scrollbar{
     width: 5px;
