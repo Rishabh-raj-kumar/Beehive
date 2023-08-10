@@ -47,15 +47,15 @@ function Sidebar({ photos }) {
 
   return (
     <>
-      <div className=" relative w-full overflow-hidden">
-        <div className="suggestion p-4 sticky top-12" style={{ width : '400px'}}>
-          <News />
+      <div className=" relative w-full">
+        <div className="suggestion p-4 sticky top-12 left-0" style={{ width : '400px'}}>
           <Suggestions
             userId={userId}
             following={following}
             loggedInUserDocId={docId}
             image={image}
           />
+           <News />
         </div>
       </div>
     </>

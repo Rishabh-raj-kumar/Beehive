@@ -24,10 +24,10 @@ function Post({ key, content}) {
   })
 
   return (
-    <div className='mx-3 rounded-md bg-white mb-8 col-span-4 border mt-2 shadow'
-    style={{boxShadow: `rgba(255,255,255,0.3) 0px 50px 100px -20px, rgba(255,255,255,0.3) 0px 30px 60px -30px`}}>
+    <div className='mx-3 mb-8 col-span-4 mt-2 shadow-[15px_15px_30px_rgb(25,25,25),-15px_-15px_30px_rgb(60,60,60)] rounded-t-[30px]'
+    style={{ background: '#000'}}>
     <Header username={content.username} img={profileImage}/>
-    <img src={content.imageSrc} className=' object-cover'/>
+    <img src={content.imageSrc} className=' m-1 mx-auto object-cover h-52'/>
     <Actions 
     content={content}
     docId={content.docId}

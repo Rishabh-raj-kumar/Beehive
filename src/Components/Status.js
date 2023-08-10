@@ -29,14 +29,12 @@ function Story({ setPlay, setVideo, setfollowedImg }) {
         {/* {console.log(followedUser[index].user[0].image)} */}
         {x.video ? (<div className=" mt-2 flex gap-2 overflow-y-scroll">
           <div
-            className="ml-2 relative flex-shrink-0 w-24 h-32 bg-gray-100 rounded-xl"
+            className="ml-2 relative flex-shrink-0 w-24 h-32 bg-white  rounded-[25px] shadow-xl"
+            style={{backgroundColor: '#FFE87C'}}
             onClick={() => {
               setPlay(true);
               setVideo(x.video);
               setfollowedImg(followedUser[index].user[0].image)
-            }}
-            style={{backgroundColor: '#6b0f1a',
-            backgroundImage: 'linear-gradient(315deg, #6b0f1a 0%, #b91372 74%)'
             }}
             key={x.userId}
           >

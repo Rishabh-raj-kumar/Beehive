@@ -16,6 +16,7 @@ const Comment = lazy(() => import('./pages/Comments'));
 const Verify = lazy(() => import('./pages/Verify'));
 const WalkThrough = lazy(() => import('./pages/WalkThrough'));
 const Status = lazy(() => import('./pages/Status'));
+const BeeComb = lazy(() => import('./pages/BeeComb'));
 import UserIsLoggedIn from "./helpers/userLoggedIn";
 import { ChatContextProvider } from "./context/chatContext";
 
@@ -43,6 +44,7 @@ function App() {
             <Route path={ROUTES.AddPost} element={<Post/>}/>
             <Route path={ROUTES.Chat} element={<Chat/>}/>
             <Route path={ROUTES.status} element={<Status/>}/>
+            <Route path={ROUTES.beeCol} element={<BeeComb/>}/>
             <Route path={ROUTES.Comments} element={<Comment/>}/>
             <Route path={"*"} element={<NotFound />} />
           </Routes>

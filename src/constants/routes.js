@@ -7,5 +7,6 @@ export const Chat = '/chat';
 export const Verify = '/verify';
 export const WalkThrough = '/walkthrough';
 export const status = '/status'
+export const beeCol = '/beecol'
 export const Comments = '/c/:docId';
 export const NOTFOUND = '/notfound';

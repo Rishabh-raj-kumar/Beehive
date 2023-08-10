@@ -20,7 +20,7 @@ function Suggestions({ userId, following, loggedInUserDocId, image }) {
 
   return (
     <>
-      <div className="bg-white rounded mt-3 p-3">
+      <div className="bg-white rounded mb-3 p-3">
         <h2 className=" text-xl font-medium">Suggestion for You.</h2>
         <div>
           {!profile ? (

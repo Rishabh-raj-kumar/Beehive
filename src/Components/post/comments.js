@@ -7,7 +7,7 @@ export default function Comments({docId, comments : allComments, posted, comment
     const [comments,setComment] = useState(allComments);
     return(
         <>
-         <div className="p-4 pt-1">
+         <div className="p-4 pt-1 text-white">
             {comments.length >= 3 && (
                 <Link to={`/c/${docId}`}>
                 <pre className=" text-sm mb-1 cursor-pointer">
@@ -17,8 +17,8 @@ export default function Comments({docId, comments : allComments, posted, comment
             )}
             {comments.slice(0,3).map(item => (
                 <p className=" mb-1">
-                    <Link to={`/p/${item.displayName}`}>
-                        <span className="mr-1 font-bold">{item.displayName}</span>
+                    <Link to={`/p/${item.name}`}>
+                        <span className="mr-1 font-bold">{item.name}</span>
                     </Link>
                     <span>{item.comment}</span>
                 </p>
