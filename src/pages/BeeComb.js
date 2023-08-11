@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Test from "../Components/BeeThreads/Test";
 function BeeComb() {
   const [count,setCount] = useState(1);
   const [text,seText] =  useState('')
@@ -40,6 +40,7 @@ function BeeComb() {
           </div>
         </>
       )}
+      <Test/>
     </section>
     </div>
   );

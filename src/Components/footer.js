@@ -7,13 +7,13 @@ import userContext from "../context/usercontext";
 import { Link } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 
-function Footer() {
-    const auth = getAuth(firebase);
+function Footer({setMobi}) {
+  const auth = getAuth(firebase);
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 770px)" });
   const { user: profile } = useUser();
   const { user } = useContext(userContext);
   const [image, setImage] = useState(null);
-  const [name,setName] = useState('');
+  const [name, setName] = useState("");
 
   useEffect(() => {
     try {
@@ -31,22 +31,34 @@ function Footer() {
     >
       {user ? (
         <>
-          <Link to={ROUTES.DASHBOARD}>
+        <div>
             <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
+              width="32px"
+              height="32px"
               viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-8 h-8"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
               <path
+                d="M4 7L7 7M20 7L11 7"
+                stroke="#1C274C"
+                stroke-width="1.5"
                 stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+              />
+              <path
+                d="M20 17H17M4 17L13 17"
+                stroke="#1C274C"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+              <path
+                d="M4 12H7L20 12"
+                stroke="#1C274C"
+                stroke-width="1.5"
+                stroke-linecap="round"
               />
             </svg>
-          </Link>
+            </div>
           <Link to={ROUTES.AddPost}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -64,21 +76,21 @@ function Footer() {
             </svg>
           </Link>
           <Link to={ROUTES.Chat}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-8 h-8 -rotate-45 -translate-y-1"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
-                  />
-                </svg>
-              </Link>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-8 h-8 -rotate-45 -translate-y-1"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
+              />
+            </svg>
+          </Link>
           <Link to={`/p/${name}`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

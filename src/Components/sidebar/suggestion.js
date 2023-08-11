@@ -9,7 +9,7 @@ function Suggestions({ userId, following, loggedInUserDocId, image }) {
   useEffect(() => {
     async function suggestedProfile() {
       const responce = await getSuggestedProfiles(userId, following);
-      // console.log(responce);
+      console.log(responce);
       setProfile(responce);
     }
 

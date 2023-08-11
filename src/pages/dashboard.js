@@ -17,6 +17,7 @@ function Dashboard() {
   const isTablet = useMediaQuery({ maxWidth: 1024 });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 770px)" });
   const isMobile = useMediaQuery({ maxWidth: 500 });
+  const [mobi,setMobi] = useState(isMobile);
 
   return (
     <>

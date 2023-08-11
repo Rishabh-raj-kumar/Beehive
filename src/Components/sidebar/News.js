@@ -5,11 +5,15 @@ function News() {
   const [category, setCategory] = useState("general");
 
   useEffect(() => {
-    fetch(
-      `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=c10d9cfbadf0469cb2f174003492eb3e`
-    )
-      .then((res) => res.json())
-      .then((data) => setItems(data.articles));
+    try {
+      fetch(
+        `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=c10d9cfbadf0469cb2f174003492eb3e`
+      )
+        .then((res) => res.json())
+        .then((data) => setItems(data.articles));
+    } catch (err) {
+      console.log(err);
+    }
   }, [category]);
   return (
     <div className=" bg-white rounded-lg">

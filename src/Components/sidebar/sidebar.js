@@ -3,6 +3,7 @@ import useUser from "../../hooks/useuser";
 import Suggestions from "./suggestion";
 import { getUserByUserId } from "../../services/firebase";
 import News from "./News";
+import Notification from "./Notification";
 
 function Sidebar({ photos }) {
   const { user } = useUser();
@@ -49,6 +50,7 @@ function Sidebar({ photos }) {
     <>
       <div className=" relative w-full">
         <div className="suggestion p-4 sticky top-12 left-0" style={{ width : '400px'}}>
+          <Notification/>
           <Suggestions
             userId={userId}
             following={following}

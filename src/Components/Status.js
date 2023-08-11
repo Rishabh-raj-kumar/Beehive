@@ -23,7 +23,6 @@ function Story({ setPlay, setVideo, setfollowedImg }) {
     <>
     {story ? (
     <div className=" status-container flex  w-full md:w-full overflow-hidden p-5">
-      {console.log(userStory)}
         {story.map((x,index) => (
         <>
         {/* {console.log(followedUser[index].user[0].image)} */}

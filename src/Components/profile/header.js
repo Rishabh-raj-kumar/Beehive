@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import {
   isUserFollowingProfile,
+  isUsersFreind,
   toggleFollowUser,
+  updateNotification,
   uploadProfilePhoto,
 } from "../../services/firebase";
 import Skeleton from "react-loading-skeleton";
@@ -29,6 +31,8 @@ export default function Header({
   const [isFollowing, setIsFollowing] = useState(false);
   const [photo, setPhoto] = useState(null);
   const [activeBtnFollow, setActive] = useState(null);
+  const [isFreinds, setisFreinds] = useState(false);
+  const [sentReq,setSendReq] = useState(false)
 
   // const [activebtn,setActiveBtn] = useState(user[0].username && user[0].username !== profileUsername);
 
@@ -36,27 +40,31 @@ export default function Header({
     try {
       if (user) {
         setActive(user[0].username && user[0].username !== profileUsername);
-        // console.log(activeBtnFollow)
       }
     } catch (err) {
       // console.log(err)
     }
   }, [user]);
+  console.log(followers,following)
+
   const handleFollow = async () => {
-    setIsFollowing((isFollowing) => !isFollowing);
-    setFollowerCount(
-      (followerCount = isFollowing
-        ? followers.length - 1
-        : followers.length + 1)
-    );
     // console.log(isFollowing,followers.length,followerCount);
     // console.log(user[0].userId)
-    await toggleFollowUser(
+    const res = await toggleFollowUser(
       isFollowing,
       user[0].docId,
       profileDocId,
       profileUserId,
       user[0].userId
+    ).then(() =>{
+      location.reload()
+    });
+
+    setIsFollowing((isFollowing) => !isFollowing);
+    setFollowerCount(
+      (followerCount = isFollowing
+        ? followers.length - 1
+        : followers.length + 1)
     );
   };
 
@@ -69,8 +77,16 @@ export default function Header({
             user[0].username,
             profileUserId
           );
-          // console.log(!!isFollow)
+          console.log(!!isFollow)
           setIsFollowing(!!isFollow);
+
+          const isFreinds = await isUsersFreind(
+            user[0].username,
+            profileUserId
+          )
+
+          console.log(!!isFreinds);
+          setisFreinds(!!isFreinds);
         }
       } catch (err) {
         // console.log(err);
@@ -102,6 +118,13 @@ export default function Header({
       console.log(err);
     }
   };
+
+  const handleFriend = async() =>{
+    console.log(user[0].docId,user[0].userId,profileUserId,profileDocId)
+       const res = await updateNotification(user[0].docId,user[0].userId,profileUserId,profileDocId)
+       setSendReq((sentReq) => !sentReq)
+  };
+
   return (
     <>
       {/* {console.log(img)} */}
@@ -135,6 +158,22 @@ export default function Header({
                   {isFollowing === true ? "unfollow" : "follow"}
                 </button>
               )}
+              {activeBtnFollow &&
+              <div>
+                {isFreinds ? (<>
+                  <button
+                  className=" mr-4 font-bold text-sm rounded text-white bg-blue-500 p-2 uppercase"
+                >
+                  Freinds
+                </button>
+                </>) :  (<button
+                  className=" mr-4 font-bold text-sm rounded text-white bg-blue-500 p-2 uppercase"
+                  onClick={handleFriend}
+                  disabled={sentReq}
+                >
+                  {sentReq === true ? "Request Sent" : "Add Friend"}
+                </button>)}
+                </div>}
               {ImportPers && (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

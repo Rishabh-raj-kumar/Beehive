@@ -11,6 +11,7 @@ import {
   getFirestore,
   limit,
   onSnapshot,
+  or,
   query,
   serverTimestamp,
   setDoc,
@@ -246,7 +247,7 @@ export async function toggleFollowUser(
   // console.log()
   await updateLoggedInUserFollowing(
     activeUserDocId,
-    profileDocId,
+    profileUserId,
     isFollowingProfile
   );
   await updateFolllowedUserFollowers(
@@ -363,4 +364,63 @@ export async function getStory(userId, following) {
   );
   
   return {StoryWithUser,userStory};
+}
+
+export async function updateNotification(
+  loggedInUserDocId,
+  loggedInUserId,
+  profileId,
+  profileDocId
+) {
+  const db = getFirestore(firebase);
+     console.log(loggedInUserDocId);
+  const docs_1 = doc(db, "users", loggedInUserDocId);
+  const docs_2 = doc(db, "users", profileDocId);
+
+  const res = await updateDoc(docs_1, {
+    sentRequest : arrayUnion(`${profileId}`)
+  });
+
+  await updateDoc(docs_2, {
+    recievedRequest  : arrayUnion(`${loggedInUserId}`)
+  });
+
+  return res;
+}
+
+export async function updateFreinds(docId,userId,profileId,profileDocId){
+  const db = getFirestore(firebase);
+  const docs_1 = doc(db, "users", docId);
+  const docs_2 = doc(db,"users",profileDocId)
+
+  await updateDoc(docs_1,{
+    sentRequest : arrayRemove(`${profileId}`),
+    freinds : arrayUnion(`${profileId}`)
+  })
+
+  await updateDoc(docs_2,{
+    recievedRequest : arrayRemove(`${userId}`),
+    freinds : arrayUnion(`${userId}`)
+  })
+
+  return true;
+}
+
+export async function isUsersFreind(loggedInUsername, profileUserId) {
+  const db = getFirestore(firebase);
+  const result = collection(db, "users");
+  const q = query(
+    result,
+    where("username", "==", loggedInUsername),
+    where("freinds", "array-contains", profileUserId)
+  );
+  const querySnapshot = await getDocs(q);
+
+  const [results = {}] = querySnapshot.docs.map((doc) => ({
+    ...doc.data(),
+    docId: doc.id,
+  }));
+
+  console.log(results)
+  return results.userId;
 }
