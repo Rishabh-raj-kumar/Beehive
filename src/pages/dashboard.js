@@ -29,13 +29,13 @@ function Dashboard() {
             isTablet && isMobile && `grid-cols-1`
           } ${isTablet && !isMobile && `grid-cols-2`} gap-3 justify-between mx-auto`}
         >
-          <Navigation/>
+          <Navigation mobi={mobi} setMobi={setMobi}/>
           <div className={` col-span-1 mr-3`}>
             <Story setPlay={setPlay} setVideo={setVideo} setfollowedImg={setfollowedImg} />
             <Timeline photos={photos} />
           </div>
           {!isTabletOrMobile && <Sidebar photos={photos} />}
-          {isMobile && <Footer />}
+          {isMobile && <Footer setMobi={setMobi} mobi={mobi}/>}
         </div>
         {/** we will be playing status */}
         {play && <Post setPlay={setPlay} play={play} followedUserImg={followedUserImg}

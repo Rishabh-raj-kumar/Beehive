@@ -15,7 +15,7 @@ import {
   query,
 } from "firebase/firestore";
 
-function Navigation() {
+function Navigation({ mobi,setMobi }) {
   const isTablet = useMediaQuery({ maxWidth: 1024 });
   const isMobile = useMediaQuery({ query: "(max-width: 500px)" });
   const auth = getAuth(firebase);
@@ -71,20 +71,35 @@ function Navigation() {
 
   return (
     <>
-      {!isMobile && (
+      {!mobi && (
         <div className=" font-poppins relative col-span-1 z-40">
           <div
-            className="max-w-sm w-1/5 h-screen bg-black fixed left-0  top-0
+            className=" w-auto md:max-w-sm  h-screen bg-black fixed left-0  top-0
        shadow-gray-50"
             style={{ boxShadow: "5px 0px 30px 5px rgba(255,255,255,0.3)" }}
           >
             <div className=" flex flex-col justify-between items-start py-4 w-full h-full">
-              <div className=" w-full flex items-center px-3 border-b-2 border-gray-400">
-                {!isTablet && (
-                  <h1 className=" text-white text-2xl font-medium pb-4">
-                    Beehive
-                  </h1>
-                )}
+              <div className=" w-full flex items-center justify-between px-3 border-b-2 border-gray-400">
+                <h1 className=" text-white text-2xl font-medium pb-4">
+                  Beehive
+                </h1>
+                {isMobile && <div className="text-2xl font-medium pb-4" onClick={() =>setMobi(mobi => !mobi) }>
+                  <svg
+                    width="32px"
+                    height="32px"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6.75827 17.2426L12.0009 12M17.2435 6.75736L12.0009 12M12.0009 12L6.75827 6.75736M12.0009 12L17.2435 17.2426"
+                      stroke="#fff"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>}
               </div>
               <div className="flex flex-col gap-4 w-full">
                 <div className=" z-1 w-full relative">
@@ -140,7 +155,7 @@ function Navigation() {
                   }}
                 >
                   <img src="/images/icons/Home.svg" />
-                  {!isTablet && <p className=" text-white text-lg">HOME</p>}
+                  <p className=" text-white text-lg">HOME</p>
                 </div>
                 <Link to={ROUTES.Chat}>
                   <div className=" flex gap-3 cursor-pointer transition-all px-3 delay-150">
@@ -158,44 +173,36 @@ function Navigation() {
                         d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
                       />
                     </svg>
-                    {!isTablet && <p className=" text-white text-lg">Chat</p>}
+                    <p className={` text-white ${ isMobile ? ' text-base': 'text-lg'}`}>Chat</p>
                   </div>
                 </Link>
                 <Link to={ROUTES.AddPost}>
                   <div className=" flex gap-3 cursor-pointer transition-all px-3 delay-150">
                     <img src="/images/icons/add_post.svg" />
-                    {!isTablet && (
-                      <p className=" text-white text-lg">Create Post</p>
-                    )}
+                    <p className={` text-white ${ isMobile ? ' text-base': 'text-lg'}`}>Create Post</p>
                   </div>
                 </Link>
                 <Link to={ROUTES.beeCol}>
                   <div className=" flex gap-3 cursor-pointer transition-all px-3 delay-150">
                     <img src="/images/icons/Bee_colony.svg" />
-                    {!isTablet && (
-                      <p className=" text-white text-lg">Bee colony</p>
-                    )}
+                    <p className={` text-white ${ isMobile ? ' text-base': 'text-lg'}`}>Bee colony</p>
                   </div>
                 </Link>
                 <Link to={ROUTES.status}>
                   <div className=" flex gap-3 cursor-pointer transition-all px-3 delay-150">
                     <img src="/images/icons/add_story.svg" />
-                    {!isTablet && (
-                      <p className=" text-white text-lg">Add Story</p>
-                    )}
+                    <p className={` text-white ${ isMobile ? ' text-base': 'text-lg'}`}>Add Story</p>
                   </div>
                 </Link>
                 <Link to={`/p/${name}`}>
                   <div className=" flex gap-3 cursor-pointer transition-all px-3 delay-150">
                     <img src="/images/icons/Person.svg" />
-                    {!isTablet && (
-                      <p className=" text-white text-lg">Profile</p>
-                    )}
+                    <p className={` text-white ${ isMobile ? ' text-base': 'text-lg'}`}>Profile</p>
                   </div>
                 </Link>
                 <div className=" flex gap-3 cursor-pointer transition-all px-3 delay-150">
                   <img src="/images/icons/setting.svg" />
-                  {!isTablet && <p className=" text-white text-lg">Settings</p>}
+                  <p className={` text-white ${ isMobile ? ' text-base': 'text-lg'}`}>Settings</p>
                 </div>
                 <div
                   className=" flex gap-3 cursor-pointer transition-all px-3 delay-150"
@@ -215,7 +222,7 @@ function Navigation() {
                       d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
                     />
                   </svg>
-                  {!isTablet && <p className=" text-white text-lg">LogOut</p>}
+                  <p className={` text-white ${ isMobile ? ' text-base': 'text-lg'}`}>LogOut</p>
                 </div>
               </div>
               {image ? (
@@ -223,38 +230,36 @@ function Navigation() {
                   <img
                     src={image}
                     alt="profile"
-                    className=" w-16 h-16 rounded-full object-cover"
+                    className={` ${isMobile ? 'w-10 h-10' : 'w-16 h-16'} rounded-full object-cover`}
                   />
                   <div className=" flex gap-2 items-center">
-                    {!isTablet && (
-                      <>
-                        <div>
-                          <div className=" flex gap-2">
-                            <p className=" text-white font-semibold text-xl ml-4">
-                              @{name}
-                            </p>
-                            {blue && (
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 48 48"
-                                width="24px"
-                                height="24px"
-                              >
-                                <polygon
-                                  fill="#42a5f5"
-                                  points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"
-                                />
-                                <polygon
-                                  fill="#fff"
-                                  points="21.396,31.255 14.899,24.76 17.021,22.639 21.428,27.046 30.996,17.772 33.084,19.926"
-                                />
-                              </svg>
-                            )}
-                          </div>
-                          <p className=" text-white text-xl ml-4">{fullname}</p>
+                    <>
+                      <div>
+                        <div className=" flex gap-2">
+                          <p className={` text-white ${ isMobile ? ' text-base': 'text-xl'} font-semibold ml-4`}>
+                            @{name}
+                          </p>
+                          {blue && (
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 48 48"
+                              width="24px"
+                              height="24px"
+                            >
+                              <polygon
+                                fill="#42a5f5"
+                                points="29.62,3 33.053,8.308 39.367,8.624 39.686,14.937 44.997,18.367 42.116,23.995 45,29.62 39.692,33.053 39.376,39.367 33.063,39.686 29.633,44.997 24.005,42.116 18.38,45 14.947,39.692 8.633,39.376 8.314,33.063 3.003,29.633 5.884,24.005 3,18.38 8.308,14.947 8.624,8.633 14.937,8.314 18.367,3.003 23.995,5.884"
+                              />
+                              <polygon
+                                fill="#fff"
+                                points="21.396,31.255 14.899,24.76 17.021,22.639 21.428,27.046 30.996,17.772 33.084,19.926"
+                              />
+                            </svg>
+                          )}
                         </div>
-                      </>
-                    )}
+                        <p className={` text-white ${ isMobile ? ' text-base': 'text-xl'} ml-4`}>{fullname}</p>
+                      </div>
+                    </>
                   </div>
                 </div>
               ) : (

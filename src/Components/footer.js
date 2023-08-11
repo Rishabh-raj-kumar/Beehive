@@ -31,7 +31,7 @@ function Footer({setMobi}) {
     >
       {user ? (
         <>
-        <div>
+        <div onClick={() => setMobi((mobi) => !mobi)}>
             <svg
               width="32px"
               height="32px"
