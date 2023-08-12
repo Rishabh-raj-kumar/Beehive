@@ -6,6 +6,7 @@ import {
   arrayRemove,
   arrayUnion,
   collection,
+  deleteDoc,
   doc,
   getDocs,
   getFirestore,
@@ -18,7 +19,9 @@ import {
   updateDoc,
   where,
 } from "firebase/firestore";
-import { getDownloadURL, getStorage, ref, uploadBytes, uploadBytesResumable } from "firebase/storage";
+import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes, uploadBytesResumable } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
+import * as ROUTES from '../constants/routes';
 
 const storage = getStorage(firebase);
 //uploading user profile photo...
@@ -296,7 +299,7 @@ export async function getPhotosByDocId(docId){
   return res.data();
 }
 
-export async function createStory(profileUserId, video,setVideoUrl,videoUrl) {
+export async function createStory(profileUserId, video,setVideoUrl,videoUrl,setLoading) {
   const db = getFirestore(firebase);
   const docs = collection(db, "status");
 
@@ -315,7 +318,8 @@ export async function createStory(profileUserId, video,setVideoUrl,videoUrl) {
     let progress = (snapshot.bytesTransferred/ snapshot.totalBytes) * 100
     progress = Math.trunc(progress);
     if(progress === 100){
-      return true;
+      setLoading(false)
+      alert('status added');
     }
   },(error)=>{
     console.log(error)
@@ -423,4 +427,19 @@ export async function isUsersFreind(loggedInUsername, profileUserId) {
 
   console.log(results)
   return results.userId;
+}
+
+export async function deleteStatus(link,video){
+  console.log(link)
+  const db = getFirestore(firebase);
+  const res = deleteDoc(doc(db, "status", `${link}`))
+  .then(() =>{
+    const storage = getStorage(firebase);
+    const deleteRef = ref(storage,video);
+    deleteObject(deleteRef);
+    alert('status deleted');
+    location.reload();
+  });
+
+    return res;
 }

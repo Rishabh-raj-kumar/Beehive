@@ -14,6 +14,7 @@ function Status() {
   const navigate = useNavigate();
   const [CurrUser, setCurrUser] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [preview,setPreview] = useState(false);
 
   useEffect(() => {
     try {
@@ -26,16 +27,14 @@ function Status() {
   }, [user]);
 
   const handleUpload = async (e) => {
-    setLoading(true);
     try {
-      await createStory(user[0].userId, video, setVideoUrl, videoUrl).then(
-        () => {
-          setTimeout(() => {
-            setLoading(false);
-            navigate(ROUTES.DASHBOARD);
-          }, 2000);
-        }
-      );
+      if(!video){
+        return;
+      }
+      setLoading(true);
+      await createStory(user[0].userId, video, setVideoUrl, videoUrl,setLoading)
+      setPreview(false);
+      setVideo(null)
     } catch (err) {
       console.log(err);
     }
@@ -89,19 +88,35 @@ function Status() {
                 </div>
               </div>
               <div className=" relative w-full  border-2 bg-white grid place-items-center">
-                <video
+                {preview ? (<video
                   className=" w-full h-96 border-1"
                   id="video-tag"
                   autoPlay={true}
                 >
                   <source id="preview" type="video/mp4" />
-                </video>
+                </video>) : (<>
+                <div className=" grid place-items-center w-full h-96 border-1">
+                     <div className=" p-4">
+                      <p className=" text-lg font-medium">Your uploaded status Preview will be shown here.</p>
+                      <p className=" mt-4"><span className=" text-lg font-semibold">Note : </span>
+                      We have limited storage and functionality so please delete the status by your own,
+                      after 24 hour or anytime you want. It will not be deleted automatic.
+                      </p>
+                      <p className=" mt-4"><span className=" text-lg font-semibold">Note : </span>
+                       Because our servers are not that fast, wait for few minutes,
+                       Be pateint while status will be uploaded.
+                      </p>
+                     </div>
+                </div>
+                </>)}
                 <input
                   type="file"
                   accept="video/*"
                   className=" hidden"
                   id="inp"
                   onChange={(event) => {
+                    setPreview(true)
+                    setTimeout(() => {
                     const videoTag = document.querySelector("#video-tag");
                     const cond = event.target.files[0].size < 8000000;
                     // console.log(event.target.files[0].size)
@@ -119,6 +134,7 @@ function Status() {
                     } else if (!cond) {
                       alert(`File size must be less than or equal to 8mb`);
                     }
+                  }, 200);
                   }}
                 />
               </div>

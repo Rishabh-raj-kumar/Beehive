@@ -14,6 +14,8 @@ function Dashboard() {
   const [play, setPlay] = useState(false);
   const [video,setVideo] = useState(null);
   const [followedUserImg,setfollowedImg] = useState(null);
+  const [docs,setDocs] = useState(null)
+  const [dateCreate,setDateCreate] = useState(null)
   const isTablet = useMediaQuery({ maxWidth: 1024 });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 770px)" });
   const isMobile = useMediaQuery({ maxWidth: 500 });
@@ -31,7 +33,8 @@ function Dashboard() {
         >
           <Navigation mobi={mobi} setMobi={setMobi}/>
           <div className={` col-span-1 mr-3`}>
-            <Story setPlay={setPlay} setVideo={setVideo} setfollowedImg={setfollowedImg} />
+            <Story setPlay={setPlay} setVideo={setVideo} setfollowedImg={setfollowedImg}
+             setDocs={setDocs} setDateCreate={setDateCreate} />
             <Timeline photos={photos} />
           </div>
           {!isTabletOrMobile && <Sidebar photos={photos} />}
@@ -39,7 +42,7 @@ function Dashboard() {
         </div>
         {/** we will be playing status */}
         {play && <Post setPlay={setPlay} play={play} followedUserImg={followedUserImg}
-        video={video}/>}
+        video={video} docs={docs} dateCreate={dateCreate}/>}
       </div>
     </>
   );

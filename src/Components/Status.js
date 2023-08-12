@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import useStory from "../hooks/useStory";
 import Skeleton from "react-loading-skeleton";
 
-function Story({ setPlay, setVideo, setfollowedImg }) {
+function Story({ setPlay, setVideo, setfollowedImg,setDocs,setDateCreate }) {
   const { story,followedUser } = useStory();
   const [userStory, setUserStory] = useState([]);
   const [userImg, setUserImg] = useState("");
@@ -22,18 +22,20 @@ function Story({ setPlay, setVideo, setfollowedImg }) {
   return (
     <>
     {story ? (
-    <div className=" status-container flex  w-full md:w-full overflow-hidden p-5">
+    <div className=" status-container flex  w-full md:w-full overflow-y-scroll p-5">
         {story.map((x,index) => (
         <>
         {/* {console.log(followedUser[index].user[0].image)} */}
-        {x.video ? (<div className=" mt-2 flex gap-2 overflow-y-scroll">
+        {x.video ? (<div className=" mt-2 flex gap-2">
           <div
-            className="ml-2 relative flex-shrink-0 w-24 h-32 bg-white  rounded-[25px] shadow-xl"
+            className="ml-2 relative overflow-hidden flex-shrink-0 w-24 h-32 bg-white  rounded-[25px] shadow-xl"
             style={{backgroundColor: '#FFE87C'}}
             onClick={() => {
               setPlay(true);
               setVideo(x.video);
               setfollowedImg(followedUser[index].user[0].image)
+              setDocs(followedUser[index].user[0].userId)
+              setDateCreate(x.createdAt)
             }}
             key={x.userId}
           >
@@ -45,7 +47,7 @@ function Story({ setPlay, setVideo, setfollowedImg }) {
             </div>
             <div className="w-full h-32">
               {x.video && (
-                <video autoPlay={false} className=" w-full h-32">
+                <video autoPlay={false} className="w-full h-32 object-fill">
                   <source src={x.video} type="video/mp4" />
                 </video>
               )}
