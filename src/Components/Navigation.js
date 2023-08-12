@@ -252,6 +252,7 @@ function Navigation({ mobi, setMobi }) {
                     </p>
                   </div>
                 </Link>
+                <Link to={ROUTES.Settings}>
                 <div className=" flex gap-3 cursor-pointer transition-all px-3 delay-150">
                   <img src="/images/icons/setting.svg" />
                   <p
@@ -262,6 +263,7 @@ function Navigation({ mobi, setMobi }) {
                     Settings
                   </p>
                 </div>
+                </Link>
                 <div
                   className=" flex gap-3 cursor-pointer transition-all px-3 delay-150"
                   onClick={() => signOut(auth)}

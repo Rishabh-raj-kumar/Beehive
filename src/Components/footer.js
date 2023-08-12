@@ -91,7 +91,7 @@ function Footer({setMobi}) {
               />
             </svg>
           </Link>
-          <Link to={`/p/${name}`}>
+          <Link to={ROUTES.Settings}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

@@ -20,6 +20,10 @@ const BeeComb = lazy(() => import('./pages/BeeComb'));
 const ForgotPass = lazy(() => import('./pages/PasswordReset'));
 const CheckEmail = lazy(() => import('./pages/checkEmail'));
 const Notifier = lazy(() => import('./pages/Notification'));
+const Setting = lazy(() => import('./pages/settings'));
+const News = lazy(() => import('./pages/News'));
+const Help = lazy(() => import('./pages/help'));
+const About = lazy(() => import('./pages/aboutAuthor'));
 import UserIsLoggedIn from "./helpers/userLoggedIn";
 import { ChatContextProvider } from "./context/chatContext";
 
@@ -49,8 +53,12 @@ function App() {
             <Route path={ROUTES.status} element={<Status/>}/>
             <Route path={ROUTES.beeCol} element={<BeeComb/>}/>
             <Route path={ROUTES.forgotPass} element={<ForgotPass/>}/>
+            <Route path={ROUTES.Settings} element={<Setting/>}/>
             <Route path={ROUTES.checkEmail} element={<CheckEmail/>}/>
             <Route path={ROUTES.Notifier} element={<Notifier/>}/>
+            <Route path={ROUTES.news} element={<News/>}/>
+            <Route path={ROUTES.aboutAuthor} element={<About/>}/>
+            <Route path={ROUTES.help} element={<Help/>}/>
             <Route path={ROUTES.Comments} element={<Comment/>}/>
             <Route path={"*"} element={<NotFound />} />
           </Routes>
