@@ -45,7 +45,8 @@ function Suggestions({ userId, following, loggedInUserDocId, image }) {
           ) : (
             <>
               <div>
-                <p>seems there is no more user to follow.</p>
+                <p>Seems there is no more user to follow.</p>
+                <p>Go to search bar in menu, and search for more users and follow them.</p>
               </div>
             </>
           )}

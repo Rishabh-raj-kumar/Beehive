@@ -129,8 +129,8 @@ export default function Header({
     <>
       {/* {console.log(img)} */}
       {/* {console.log(user[0])} */}
-      <div className="mt-3 grid grid-cols-3 justify-between max-w-lg-screen">
-        <div className="container flex justify-center">
+      <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 justify-between max-w-lg-screen">
+        <div className="container w-full flex items-center justify-center">
           <div className="relative">
           <img
             className="rounded-full w-28 h-28 object-cover"
@@ -146,10 +146,14 @@ export default function Header({
         </div>
 
         {/* {console.log(isFollowing)} */}
-        <div className="flex justify-center flex-col col-span-2">
+        <div className="flex justify-center items-center sm:items-start flex-col col-span-2">
           <div className="flex flex-col">
-            <div className="container flex items-center">
+            <div className="container flex items-center sm:items-start flex-col gap-3">
+              <div>
               <p className="text-2xl mr-4">{profileUsername}</p>
+              {profileDesc && <p className=" mt-1 text-lg">{profileDesc}</p>}
+              </div>
+              <div className=" flex gap-1">
               {activeBtnFollow && (
                 <button
                   className=" mr-4 font-bold text-sm rounded text-white bg-blue-500 p-2 uppercase"
@@ -192,7 +196,7 @@ export default function Header({
                 </svg>
               )}
             </div>
-            {profileDesc && <p className=" mt-1 text-lg">{profileDesc}</p>}
+            </div>
           </div>
           <div className="container flex mt-4">
             {followers === undefined || following === undefined ? (
