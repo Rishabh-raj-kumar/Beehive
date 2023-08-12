@@ -13,6 +13,7 @@ function Dashboard() {
   const { photos } = usePhotos();
   const [play, setPlay] = useState(false);
   const [video,setVideo] = useState(null);
+  const [text,setText] = useState(null);
   const [followedUserImg,setfollowedImg] = useState(null);
   const [docs,setDocs] = useState(null)
   const [dateCreate,setDateCreate] = useState(null)
@@ -34,7 +35,7 @@ function Dashboard() {
           <Navigation mobi={mobi} setMobi={setMobi}/>
           <div className={` col-span-1 mr-3`}>
             <Story setPlay={setPlay} setVideo={setVideo} setfollowedImg={setfollowedImg}
-             setDocs={setDocs} setDateCreate={setDateCreate} />
+             setDocs={setDocs} setDateCreate={setDateCreate} setText={setText} />
             <Timeline photos={photos} />
           </div>
           {!isTabletOrMobile && <Sidebar photos={photos} />}
@@ -42,7 +43,7 @@ function Dashboard() {
         </div>
         {/** we will be playing status */}
         {play && <Post setPlay={setPlay} play={play} followedUserImg={followedUserImg}
-        video={video} docs={docs} dateCreate={dateCreate}/>}
+        video={video} docs={docs} dateCreate={dateCreate} text={text}/>}
       </div>
     </>
   );

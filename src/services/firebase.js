@@ -299,7 +299,7 @@ export async function getPhotosByDocId(docId){
   return res.data();
 }
 
-export async function createStory(profileUserId, video,setVideoUrl,videoUrl,setLoading) {
+export async function createStory(profileUserId, video,setVideoUrl,videoUrl,setLoading,text) {
   const db = getFirestore(firebase);
   const docs = collection(db, "status");
 
@@ -328,6 +328,7 @@ export async function createStory(profileUserId, video,setVideoUrl,videoUrl,setL
       setVideoUrl(downUrl);
        addDoc(docs, {
         userId: profileUserId,
+        text : text !== '' ? text : null,
         video : downUrl,
         createdAt : serverTimestamp(),
       });
@@ -427,6 +428,18 @@ export async function isUsersFreind(loggedInUsername, profileUserId) {
 
   console.log(results)
   return results.userId;
+}
+
+export async function getStatus(userId){
+  const db = getFirestore(firebase);
+  const result = collection(db, "status");
+  const q = query(result, where("userId", "==", userId));
+  const res = await getDocs(q);
+
+  return res.docs.map((item) => ({
+    ...item.data(),
+    docId: item.id,
+  }));
 }
 
 export async function deleteStatus(link,video){

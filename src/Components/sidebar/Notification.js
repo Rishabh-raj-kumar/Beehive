@@ -13,7 +13,7 @@ function Notification() {
         if(user){
           console.log(user[0].recievedRequest)
           setRecieved(user[0].recievedRequest)
-          setNotif(user[0].recievedRequest.length());
+          setNotif(user[0].recievedRequest.length);
         }
       }catch(err){
         console.log(err)
@@ -81,8 +81,8 @@ function Notification() {
           )}
         </div>
       </div>
-      {prof && <div>
-        {prof.map((x) => (
+      {notif ? (<div>
+        {prof  && prof.map((x) => (
             <div className=" flex justify-between p-2">
               {/* {console.log(x)} */}
               <div className=" flex gap-1">
@@ -96,7 +96,9 @@ function Notification() {
             </div>
           </div>
         ))}
-      </div>}
+      </div>) : (<>
+      <p className=" text-lg ml-2 mb-1">No new Notification.</p>
+      </>)}
     </div>
   );
 }

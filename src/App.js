@@ -17,6 +17,9 @@ const Verify = lazy(() => import('./pages/Verify'));
 const WalkThrough = lazy(() => import('./pages/WalkThrough'));
 const Status = lazy(() => import('./pages/Status'));
 const BeeComb = lazy(() => import('./pages/BeeComb'));
+const ForgotPass = lazy(() => import('./pages/PasswordReset'));
+const CheckEmail = lazy(() => import('./pages/checkEmail'));
+const Notifier = lazy(() => import('./pages/Notification'));
 import UserIsLoggedIn from "./helpers/userLoggedIn";
 import { ChatContextProvider } from "./context/chatContext";
 
@@ -45,6 +48,9 @@ function App() {
             <Route path={ROUTES.Chat} element={<Chat/>}/>
             <Route path={ROUTES.status} element={<Status/>}/>
             <Route path={ROUTES.beeCol} element={<BeeComb/>}/>
+            <Route path={ROUTES.forgotPass} element={<ForgotPass/>}/>
+            <Route path={ROUTES.checkEmail} element={<CheckEmail/>}/>
+            <Route path={ROUTES.Notifier} element={<Notifier/>}/>
             <Route path={ROUTES.Comments} element={<Comment/>}/>
             <Route path={"*"} element={<NotFound />} />
           </Routes>

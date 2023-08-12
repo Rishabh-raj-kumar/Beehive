@@ -15,6 +15,7 @@ function Status() {
   const [CurrUser, setCurrUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [preview,setPreview] = useState(false);
+  const [text,setText] = useState('');
 
   useEffect(() => {
     try {
@@ -32,7 +33,7 @@ function Status() {
         return;
       }
       setLoading(true);
-      await createStory(user[0].userId, video, setVideoUrl, videoUrl,setLoading)
+      await createStory(user[0].userId, video, setVideoUrl, videoUrl,setLoading,text)
       setPreview(false);
       setVideo(null)
     } catch (err) {
@@ -88,6 +89,10 @@ function Status() {
                 </div>
               </div>
               <div className=" relative w-full  border-2 bg-white grid place-items-center">
+                <input type="text"
+                placeholder="Any Description ?"
+                className=" w-full p-2 outline-none border-2"
+                onChange={(e) => setText(e.target.value)}/>
                 {preview ? (<video
                   className=" w-full h-96 border-1"
                   id="video-tag"

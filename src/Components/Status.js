@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import useStory from "../hooks/useStory";
 import Skeleton from "react-loading-skeleton";
 
-function Story({ setPlay, setVideo, setfollowedImg,setDocs,setDateCreate }) {
+function Story({ setPlay, setVideo, setfollowedImg,setDocs,setDateCreate,setText }) {
   const { story,followedUser } = useStory();
   const [userStory, setUserStory] = useState([]);
   const [userImg, setUserImg] = useState("");
@@ -10,6 +10,7 @@ function Story({ setPlay, setVideo, setfollowedImg,setDocs,setDateCreate }) {
   useEffect(() =>{
           try{
             if(story){
+              console.log(story)
               // console.log(followedUser[0].user[0].image)
               // setUserImg(followedUser[0].image)
               setUserStory(story);
@@ -36,6 +37,7 @@ function Story({ setPlay, setVideo, setfollowedImg,setDocs,setDateCreate }) {
               setfollowedImg(followedUser[index].user[0].image)
               setDocs(followedUser[index].user[0].userId)
               setDateCreate(x.createdAt)
+              setText(x.text)
             }}
             key={x.userId}
           >
