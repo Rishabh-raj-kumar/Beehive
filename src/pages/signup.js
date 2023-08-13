@@ -63,7 +63,7 @@ function SignUp() {
           image: faker.image.avatar(),
           emailAddress: email.toLowerCase(),
           followers: [],
-          following: [id],
+          following: [id,'TljGeB5FulUg37wxXfwHbuej1E82'],
           suggestions: [],
           sentRequest: [],
           recievedRequest: [],

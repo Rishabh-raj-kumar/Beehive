@@ -72,11 +72,12 @@ function Navigation({ mobi, setMobi }) {
   return (
     <>
       {!mobi && (
-        <div className=" font-poppins relative col-span-1 z-40">
+        <div className=" font-poppins relative col-span-1 z-40"
+        style={{ height :'100dvh'}}>
           <div
             className=" w-auto md:max-w-sm  h-screen bg-black fixed left-0  top-0
        shadow-gray-50"
-            style={{ boxShadow: "5px 0px 30px 5px rgba(255,255,255,0.3)" }}
+            style={{ boxShadow: "5px 0px 30px 5px rgba(255,255,255,0.3)", height :'100dvh' }}
           >
             <div className=" flex flex-col justify-between items-start py-4 w-full h-full">
               <div className=" w-full flex items-center justify-between px-3 border-b-2 border-gray-400">
