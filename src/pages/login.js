@@ -129,7 +129,7 @@ function Login() {
             </div>
             <Link to={ROUTES.forgotPass}>
               <div className=" w-full">
-                <p className=" text-lg font-semibold text-center underline">
+                <p className=" text-lg text-white font-semibold text-center underline">
                   Forgot Password?
                 </p>
               </div>
