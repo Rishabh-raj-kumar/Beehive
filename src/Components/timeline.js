@@ -5,7 +5,7 @@ import Post from './post/index';
 function Timeline({photos}) {
   
   return (
-    <div className='container col-span-2'>
+    <div className='container min-h-full col-span-2'>
       {/** firstly we will create a skeleton map if photo does not fetched... */}
      {
       !photos ? (

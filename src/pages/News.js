@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 
 function News() {
   const [items, setItems] = useState([]);
@@ -16,7 +17,8 @@ function News() {
     }
   }, [category]);
   return (
-    <div className=" bg-white rounded-lg">
+    <>
+    {items.length > 0 ? (<div className=" bg-white rounded-lg">
       <h2 className=" font-medium text-xl p-3">Latest News</h2>
       <div className=" h-screen overflow-y-scroll">
         <div className=" flex flex-col lg:grid lg:grid-cols-2 gap-2 overflow-y-scroll">
@@ -29,7 +31,13 @@ function News() {
           ))}
         </div>
       </div>
-    </div>
+    </div>) : (<>
+      {[...new Array(3)].map((_,index)=>(
+          <Skeleton count={1} key={index} width={400} height={300}
+          className=' mb-5'/>
+        ))}
+      </>)}
+      </>
   );
 }
 

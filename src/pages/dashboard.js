@@ -30,8 +30,8 @@ function Dashboard() {
         <div
           className={`grid ${!isTablet && !isMobile && `grid-cols-3`} ${
             isTablet && isMobile && `grid-cols-1`
-          } ${isTablet && !isMobile && `grid-cols-2`} gap-3 justify-between mx-auto`}
-          style={{ minHeight : '100dvh'}}
+          } ${isTablet && !isMobile && `grid-cols-2`} md:overflow-hidden gap-3 justify-between mx-auto`}
+          style={{ minHeight : '100vh'}}
         >
           <Navigation mobi={mobi} setMobi={setMobi}/>
           <div className={` col-span-1 mr-3`}>

@@ -64,7 +64,7 @@ function Chat() {
             style={{ height: "calc(100%)" }}
           >
             <div className="md:w-3/4">
-              <img src="/images/logo_bee2.svg" className=" opacity-70 mb-2" />
+              <img src="/images/logo_bee2.png" className=" m-auto w-20 h-20 opacity-70 mb-2" />
               <div className=" text-gray-500 mb-2">
                 <div className="flex gap-2">
                   <svg

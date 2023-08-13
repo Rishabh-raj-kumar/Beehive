@@ -19,7 +19,8 @@ body{
     }
 }
 .header{
-   background: rgba(255, 255, 255, 0.548);
+    position: fixed;
+   background: rgba(231, 247, 255, 0.919);
 }
 .animate{
     animation: animate 5s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;

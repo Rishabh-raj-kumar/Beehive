@@ -31,7 +31,7 @@ function Header() {
 
   return (
     <header className="header w-full h-16 backdrop-blur p-2 sticky top-0 z-50">
-      <div className="flex flex-wrap justify-around items-center">
+      <div className="flex flex-wrap justify-between mx-4 items-center">
         <div className="p-1">
           <Link to={ROUTES.DASHBOARD}>
             <div className=" flex gap-2">
@@ -50,6 +50,7 @@ function Header() {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            className=" rotate-12"
           >
             <path
               fill-rule="evenodd"
