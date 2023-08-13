@@ -61,14 +61,14 @@ function Settings() {
           <p className="text-xl font-poppins"> Help </p>
         </div>
       </Link>
-      <Link to={ROUTES.aboutAuthor}>
+      <a href="https://awward.netlify.app/" target="_blank">
         <div className=" border-b-2 p-2 flex gap-2 items-center">
           <div className=" w-14 h-14 bg-purple-300 grid place-items-center">
             <img src={'/images/icons/about.svg'}/>
           </div>
           <p className="text-xl font-poppins"> About Author </p>
         </div>
-      </Link>
+      </a>
     </div>
   );
 }

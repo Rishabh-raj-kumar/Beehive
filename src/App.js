@@ -23,7 +23,6 @@ const Notifier = lazy(() => import('./pages/Notification'));
 const Setting = lazy(() => import('./pages/settings'));
 const News = lazy(() => import('./pages/News'));
 const Help = lazy(() => import('./pages/help'));
-const About = lazy(() => import('./pages/aboutAuthor'));
 import UserIsLoggedIn from "./helpers/userLoggedIn";
 import { ChatContextProvider } from "./context/chatContext";
 
@@ -57,7 +56,6 @@ function App() {
             <Route path={ROUTES.checkEmail} element={<CheckEmail/>}/>
             <Route path={ROUTES.Notifier} element={<Notifier/>}/>
             <Route path={ROUTES.news} element={<News/>}/>
-            <Route path={ROUTES.aboutAuthor} element={<About/>}/>
             <Route path={ROUTES.help} element={<Help/>}/>
             <Route path={ROUTES.Comments} element={<Comment/>}/>
             <Route path={"*"} element={<NotFound />} />

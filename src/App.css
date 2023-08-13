@@ -19,7 +19,6 @@ body{
     }
 }
 .header{
-    position: fixed;
    background: rgba(231, 247, 255, 0.919);
 }
 .animate{
