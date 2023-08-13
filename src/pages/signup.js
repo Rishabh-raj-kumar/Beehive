@@ -27,7 +27,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const inValid = email === "" || password === "";
+  const inValid = email === "" || password === "" || password.length < 6;
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 770px)" });
 
   const handleLogin = async (e) => {
