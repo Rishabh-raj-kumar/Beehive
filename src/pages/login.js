@@ -59,8 +59,15 @@ function Login() {
           <Loader />
         </>
       ) : (
-        <div className=" container overflow-hidden mx-auto max-w-screen-md h-screen flex flex-wrap md:flex-nowrap items-center"
-        style={{ background :  `${isTabletOrMobile ? "url('/images/background.png')" : 'none'}`, backgroundRepeat : 'no-repeat',backgroundSize : '100% 100%'}}>
+        <div
+          className=" container overflow-hidden mx-auto max-w-screen-md h-screen flex flex-wrap md:flex-nowrap items-center"
+          style={{
+            background: `${
+              isTabletOrMobile ? "url('/images/background.png')" : "none"
+            }`,
+            backgroundSize: "100% 100%",
+          }}
+        >
           <div className="w-full md:w-3/5 flex items-center justify-center m-3">
             {!isTabletOrMobile && (
               <img
@@ -72,8 +79,11 @@ function Login() {
           </div>
           <div className="flex flex-col justify-center gap-3 w-full md:w-2/5 h-full">
             <div className=" flex gap-1 items-center justify-center">
-            <img src={"/images/logo_bee2.png"} className=" w-36 rounded-full shadow-xl shadow-violet-500" />
-            <p className=" font-poppins text-4xl font-semibold">Beehive</p>
+              <img
+                src={"/images/logo_bee2.png"}
+                className=" w-36 rounded-full shadow-xl shadow-violet-500"
+              />
+              <p className=" font-poppins text-4xl font-semibold">Beehive</p>
             </div>
             {error && <p>{error}</p>}
             <form
