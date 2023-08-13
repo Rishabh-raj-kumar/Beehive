@@ -19,6 +19,7 @@ import {
 } from "firebase/firestore";
 import { faker } from "@faker-js/faker";
 import { useMediaQuery } from "react-responsive";
+import Loader from "../Components/Loader";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loader,setLoader] = useState(false);
   const inValid = email === "" || password === "" || password.length < 6;
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 770px)" });
 
@@ -35,6 +37,7 @@ function SignUp() {
     const usern = await doesUserExist(username);
 
     if (!usern.length) {
+      setLoader(true)
       try {
         const auth = getAuth();
         const createdUserresult = await createUserWithEmailAndPassword(
@@ -73,6 +76,7 @@ function SignUp() {
 
         await setDoc(doc(db, "userChats", id), {});
 
+        setLoader(false)
         navigate(`${ROUTES.WalkThrough}`);
       } catch (error) {
         setEmail("");
@@ -92,7 +96,9 @@ function SignUp() {
 
   return (
     <>
-      <div
+      {loader ? (<>
+      <Loader/>
+      </>) : (<div
         className="container mx-auto max-w-screen-md h-screen flex flex-wrap md:flex-nowrap items-center"
         style={{
           background: `${
@@ -176,7 +182,7 @@ function SignUp() {
             </p>
           </div>
         </div>
-      </div>
+      </div>)}
     </>
   );
 }

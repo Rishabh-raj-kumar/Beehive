@@ -10,6 +10,7 @@ function WalkThrough() {
   const [description, setDescription] = useState("");
   const [preImg, setPreImg] = useState(null);
   const [image, setImage] = useState(null);
+  const [loader,setLoader] = useState(false)
 
   useEffect(() => {
     // console.log(user);
@@ -25,7 +26,9 @@ function WalkThrough() {
   const handleChange = async () => {
     try {
       if (image) {
+        setLoader(true)
         let res = await tellMeYourself(user[0].docId,user[0].userId, image, description);
+        setLoader(false)
         navigate(`${ROUTES.DASHBOARD}`);
       }else{
         alert('Please add profile photo');

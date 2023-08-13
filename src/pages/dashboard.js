@@ -25,12 +25,13 @@ function Dashboard() {
   return (
     <>
       <div className={`relative ${play && 'overflow-hidden'}`}
-      style={{background: '	#040406'}}>
+      style={{background: '	#040406',minHeight : '100dvh'}}>
         {isMobile && <Header />}
         <div
           className={`grid ${!isTablet && !isMobile && `grid-cols-3`} ${
             isTablet && isMobile && `grid-cols-1`
           } ${isTablet && !isMobile && `grid-cols-2`} gap-3 justify-between mx-auto`}
+          style={{ minHeight : '100dvh'}}
         >
           <Navigation mobi={mobi} setMobi={setMobi}/>
           <div className={` col-span-1 mr-3`}>

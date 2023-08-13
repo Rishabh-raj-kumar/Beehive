@@ -34,7 +34,10 @@ function Header() {
       <div className="flex flex-wrap justify-around items-center">
         <div className="p-1">
           <Link to={ROUTES.DASHBOARD}>
-            <img src={"/images/logo_bee2.svg"} />
+            <div className=" flex gap-2">
+            <img src={"/images/logo_bee2.png"} className=" w-8 h-8 " />
+            <p className=" font-poppins text-xl items-center">Beehive</p>
+            </div>
           </Link>
         </div>
         <div>

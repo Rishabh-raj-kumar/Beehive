@@ -27,7 +27,7 @@ function Footer({setMobi}) {
   }, [profile]);
   return (
     <div
-      className={`w-screen bg-white sticky flex justify-around bottom-0 left-0 p-3`}
+      className={`w-screen bg-white fixed flex justify-around bottom-0 left-0 p-3 h-16`}
     >
       {user ? (
         <>
