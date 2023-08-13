@@ -25,7 +25,7 @@ function Dashboard() {
   return (
     <>
       <div className={`relative ${play && 'overflow-hidden'}`}
-      style={{background: '	#040406',minHeight : '100dvh'}}>
+      style={{background: '	#040406'}}>
         {isMobile && <Header />}
         <div
           className={`grid ${!isTablet && !isMobile && `grid-cols-3`} ${
