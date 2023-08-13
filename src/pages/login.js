@@ -14,8 +14,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const inValid = email === "" || password === "";
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 770px)" });
+  const inValid = email === "" || password === "" || password.length < 6;
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 770 });
 
   useEffect(() => {
     // console.log(user)
@@ -59,7 +59,8 @@ function Login() {
           <Loader />
         </>
       ) : (
-        <div className=" container mx-auto max-w-screen-md h-screen flex flex-wrap md:flex-nowrap items-center">
+        <div className=" container overflow-hidden mx-auto max-w-screen-md h-screen flex flex-wrap md:flex-nowrap items-center"
+        style={{ background :  `${isTabletOrMobile ? "url('/images/background.png')" : 'none'}`, backgroundRepeat : 'no-repeat',backgroundSize : '100% 100%'}}>
           <div className="w-full md:w-3/5 flex items-center justify-center m-3">
             {!isTabletOrMobile && (
               <img
@@ -70,7 +71,10 @@ function Login() {
             )}
           </div>
           <div className="flex flex-col justify-center gap-3 w-full md:w-2/5 h-full">
-            <img src={"/images/logo_bee2.svg"} />
+            <div className=" flex gap-1 items-center justify-center">
+            <img src={"/images/logo_bee2.png"} className=" w-36 rounded-full shadow-xl shadow-violet-500" />
+            <p className=" font-poppins text-4xl font-semibold">Beehive</p>
+            </div>
             {error && <p>{error}</p>}
             <form
               onSubmit={handleLogin}
@@ -98,14 +102,15 @@ function Login() {
               <input
                 disabled={inValid}
                 type="submit"
-                className={` bg-emerald-400 cursor-pointer p-3 mt-4 text-lg outline-none border-1 focus:bg-yellow-400 shadow-xl 
+                value="Let's Go"
+                className={` bg-slate-950 font-poppins cursor-pointer p-3 mt-4 text-lg outline-none border-1 focus:bg-yellow-400 shadow-xl 
               focus:outline-2 focus:outline-yellow-400 ${
-                inValid && "opacity-50"
+                inValid ? "text-gray-200 opacity-80" : "text-white opacity-100"
               }`}
               />
             </form>
             <div className="m-2 text-md">
-              <p>
+              <p className=" text-white">
                 Dont have an account?
                 <Link to="/signup" className=" mx-2 text-lg text-blue-500">
                   SignUp
