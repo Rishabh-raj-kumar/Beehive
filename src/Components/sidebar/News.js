@@ -30,6 +30,8 @@ function News() {
   //       </div>
   //     </div>
   //   </div>
+  return(
+    <div>Hello world</div>
   );
 }
 
