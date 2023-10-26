@@ -38,6 +38,8 @@ function News() {
   //       ))}
   //     </>)}
   //     </>
+  return(
+    <div>Hello world</div>
   );
 }
 
